@@ -117,6 +117,10 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="log.cpp" />
+    <ClCompile Include="Multiply.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="EndBrace.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

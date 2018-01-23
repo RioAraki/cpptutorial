@@ -1,0 +1,19 @@
+	1. Native language 通过不同的 compiler 直接翻译成 machine code，更加底层
+
+	2. linker，负责把不同 file 的 function 连接到一起，而引用一个别的 file 的 function 只需要 declaration，compiler 会无条件相信你.
+
+	3. C++本质上就是text file, 而从text file 变成 exe 大抵需要两部 一是 compile 二是 linking。compiler就是把 c++ text 变为 obj file为之后link做准备的过程。
+
+	4. 有关 file 和 translation unit: c++不看重file，file只是一种满足 compiler需求的格式，而被compile后的cpp 可以称之为 translation unit，有时一个cpp file 对应一个 translation unit，而当你用一个 cpp file include 一大堆别的file时，这些东西整体被称为一个 translation unit (因为你只compile了一次)
+
+	5. 处理 header file 的过程是 preprocess 的过程，而proprocess所做的就是把 header file 直接搬运到 cpp 里，之后再对这个 cpp 做 compile。以下是几种典型的 preprocessing：
+		* #define a b, 会自动把所有的 a 改成 b
+		* #if <condition> … #endif  根据逻辑执行或者跳过代码
+		* #include <library> 把整个 library 全部放到 cpp 对应位置
+
+	6. Compile 的过程到底是什么：
+		1. Obj file 到底是什么 -> machine code 二进制编码 -> 可以通过设置 output 为 Assembly only listing 将其翻译成汇编
+		2. Compiler optimize: max speed -> 会把汇编文件缩小，只做最必要的步骤（不利于debug），并且会把无用的function （比如这个function所做的就是 return 一个 constant value ）忽略，直接储存 constant
+		3. 当一个 function 用到 另一个 function 时汇编会用 call 命令以使用另一个function
+		4. 每一个 function 有独特的 function signature 给 linker用
+
