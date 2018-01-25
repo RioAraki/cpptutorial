@@ -1,6 +1,6 @@
 # C++ Notes
 
-	1. Native language 通过不同的 compiler 直接翻译成 machine code，更加底层
+		1. Native language 通过不同的 compiler 直接翻译成 machine code，更加底层
 	2. linker，负责把不同 file 的 function 连接到一起，而引用一个别的 file 的 function 只需要 declaration，compiler 会无条件相信你
 	3. C++本质上就是text file, 而从text file 变成 exe 大抵需要两部 一是 compile 二是 linking。compiler就是把 c++ text 变为 obj file为之后link做准备的过程。
 	4. 有关 file 和 translation unit: c++不看重file，file只是一种满足 compiler需求的格式，而被compile后的cpp 可以称之为 translation unit，有时一个cpp file 对应一个 translation unit，而当你用一个 cpp file include 一大堆别的file时，这些东西整体被称为一个 translation unit (因为你只compile了一次)
@@ -24,3 +24,14 @@
 		8. Keyword static: This function is only declared for the current translation unit (it is internal, not visible to other files)
 		9. Other possible linker error: duplicate function name (even function in header file)
 		10. Keyword inline: put the function body with parameter into where it is called directly.
+	8. Variables in C++
+		1. keyword: unsigned, an integer does not have sign bit
+		2. char: 1byte; short: 2 bytes; int: 4 bytes; long: usually 4 bytes;
+		3. compiler will treat the value differently based on the data type 
+		eg: if you have char a = 65, it would print out 'A'; short a = 'A', it would print out 65  
+		4. Core difference between different data types is the bytes allocated for each unit.
+		5. float & double -> if f is appended, it is a float. Otherwise it is a double
+		6. Though bool only takes one 'bit' to represent 0 or 1. We still need one 'byte' to store it because we cannot manipulate one 'bit' in memory.
+		7. sizeof (type) -> check the size of certain type
+	
+		
