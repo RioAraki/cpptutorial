@@ -1,8 +1,12 @@
 # include <iostream>
+# include "Log.h"
 
-void Log(const char* message);
+int main() {
 
-//int main() {
-//	Log("helllo world");
-//	std::cin.get();
-//} 
+	int a = 8;
+	a++;
+	const char* string
+
+	Log("Hello World!");
+	std::cin.get();
+}
