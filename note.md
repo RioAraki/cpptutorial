@@ -1,6 +1,4 @@
-# C++ Notes
-
-		1. Native language 通过不同的 compiler 直接翻译成 machine code，更加底层
+	1. Native language 通过不同的 compiler 直接翻译成 machine code，更加底层
 	2. linker，负责把不同 file 的 function 连接到一起，而引用一个别的 file 的 function 只需要 declaration，compiler 会无条件相信你
 	3. C++本质上就是text file, 而从text file 变成 exe 大抵需要两部 一是 compile 二是 linking。compiler就是把 c++ text 变为 obj file为之后link做准备的过程。
 	4. 有关 file 和 translation unit: c++不看重file，file只是一种满足 compiler需求的格式，而被compile后的cpp 可以称之为 translation unit，有时一个cpp file 对应一个 translation unit，而当你用一个 cpp file include 一大堆别的file时，这些东西整体被称为一个 translation unit (因为你只compile了一次)
@@ -33,5 +31,22 @@
 		5. float & double -> if f is appended, it is a float. Otherwise it is a double
 		6. Though bool only takes one 'bit' to represent 0 or 1. We still need one 'byte' to store it because we cannot manipulate one 'bit' in memory.
 		7. sizeof (type) -> check the size of certain type
-	
-		
+	9. Functions in C++
+		1. Basic
+	10. Header in C++
+		1. Usually used to do the declaration that some function exists (for cross file function reference)
+		2. #pragma once -> only allow you to put the header file in the same file once, the duplicate parts would be ignored to prevent duplicate error
+		3. If you define same function in two different header file A and B while A and B are both included in one function, you will still get duplicate error
+		4. <> and "" in include statement: 
+			i. "" -> relative path, you could use something like "../ Log.h", or use as <>
+			ii. <> -> refer to the default include directory
+		5. C++ std lib file does not have an extension; C std lib file has an extension
+	11. Debug C++ in visual studio
+		1. Breakpoint: a point in the program where execution would pause and let you looks at the state in the memory.
+		2. Looking in the memory
+		3. Debug window -> orders/ locals/ watch
+			i. Orders/ locals: show you local variables or something important
+			ii. Watch: let you monitor the variable by yourself
+		4. Memory view: show you all memories about this program
+			i. & + variable name -> let you know where this variable locates
+			ii. Memory cc -> a place holder for uninitialized stack memory (ony in debug mode?)
