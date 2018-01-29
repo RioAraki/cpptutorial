@@ -50,3 +50,7 @@
 		4. Memory view: show you all memories about this program
 			i. & + variable name -> let you know where this variable locates
 			ii. Memory cc -> a place holder for uninitialized stack memory (ony in debug mode?)
+	12. Condition and branch in C++
+		1. In machine code level, branch is jumping to different part of memory. Avoid branching would optimize the program.
+		2. BASIC
+	
