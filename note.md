@@ -53,4 +53,25 @@
 	12. Condition and branch in C++
 		1. In machine code level, branch is jumping to different part of memory. Avoid branching would optimize the program.
 		2. BASIC
-	
+	13. Loops in C++
+		1. For loop: for (int i = 0; i < 5; i++)…
+			i. int i = 0 -> variable declaration, only works once before the loop begins
+			ii. i < 5 -> condition check everytime before each loop
+			iii. i++ -> runs everytime after each loop (before the next loop)
+		2. for (; ;) -> no condition, always true
+		3. while loop is just a for loop with only the condition part
+		4. do while loop:  do { …… } while (i < 5) -> the body of loop would be executed at least once no matter what.
+	14. Control flow in c++
+		1. BASIC
+	15. Pointers in c++
+		1. a pointer is an integer variable that stores memory address
+		2. we can regard memory as a linear one dimensional line, every point (unit) is going to have a number and address (one byte of data), all our code do is reading and writing from/ to memory
+		3. type does not matter for pointer, if we give a pointer a type, it just means we presume the type.
+		4. void* -> just hold an address, does not care about type
+			i. void* ptr = 0/NULL/nullptr;
+			0 is an invalid memory, means the same as null. a pointer set to 0 means its invliad
+		5. & before variable -> return the variable's memory address
+		6. * before pointer -> reference the pointer, go back to the value the pointer stores 
+		7. we don't know how big a pointer is (how many memories it points to), we can specify the size by claiming a char* (char is one byte) = new char[8] (ask for 8 bytes of memory)
+		8. memset(ptr, value, bytes) -> fill the block of memory with the data with specified, we need delete[] to delete the allocated memory from memset()
+		9. pointers are still variables and are also stored in memory, so we can get pointer to pointer
