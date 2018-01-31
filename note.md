@@ -71,7 +71,22 @@
 			i. void* ptr = 0/NULL/nullptr;
 			0 is an invalid memory, means the same as null. a pointer set to 0 means its invliad
 		5. & before variable -> return the variable's memory address
-		6. * before pointer -> reference the pointer, go back to the value the pointer stores 
+		6. * before pointer -> dereference the pointer, go back to the value the pointer stores 
+			Example:
+			int var = 8
+			int* ptr = &var // ptr is a variable, is a pointer, reference to var variable's memory address
+			*ptr = 10           // ptr is a variable, is a pointer. *ptr is a reference to the value associated with the memory address pointer points to
 		7. we don't know how big a pointer is (how many memories it points to), we can specify the size by claiming a char* (char is one byte) = new char[8] (ask for 8 bytes of memory)
 		8. memset(ptr, value, bytes) -> fill the block of memory with the data with specified, we need delete[] to delete the allocated memory from memset()
 		9. pointers are still variables and are also stored in memory, so we can get pointer to pointer
+	Example for pointer:
+	16. Reference in C++
+		1. a reference is a way for us to reference a existing variable, they are not new variables/ does not occupy memory/ does not have storage
+		2. difference between & before variable and & after type:
+			i. & before variable: represent's the variable's memory address
+			ii. &after type (its part of the type): reference, alias
+				Example:
+		3. reference is more like a syntax sugar, everything could done by a reference could be done by a pointer. It would make our life more easier and make our code looks cleaner
+	Example of reference and pointer:
+	17. Classes in C++
+		
