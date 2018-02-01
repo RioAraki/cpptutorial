@@ -89,4 +89,16 @@
 		3. reference is more like a syntax sugar, everything could done by a reference could be done by a pointer. It would make our life more easier and make our code looks cleaner
 	Example of reference and pointer:
 	17. Classes in C++
+		1. C++ does not force to do oop
+		2. Classes allow us to group variables together to become a type, and to add functionalities which are called methods.
+		3. Classes does not provide new functionalities, they are essentially syntax sugar to orgnazie our code better
+	18. Classes vs struct in C++
+		1. Technique difference: all elements in class by default is private / struct -> default is public
+		2. structs exist in C++ in order to maintain compatibility with C.
+		3. Usage difference:
+			i. structs: structure that’s all about variables/ variable manipulation (like a n-dimensional vector)
+			ii. class: may have more functionality, and more hierarchy (like inheritance
+	19. Write class in c++
+		1. define different visibility variable/ functions in different area
+
 		
