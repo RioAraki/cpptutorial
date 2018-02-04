@@ -100,5 +100,16 @@
 			ii. class: may have more functionality, and more hierarchy (like inheritance
 	19. Write class in c++
 		1. define different visibility variable/ functions in different area
-
+	20. (+21) Statics in C++
+		1. Statics outside of a class: variable is going to be linked only internally to the translation unit
+			i. Cant have two global variables with the same name, we could use the keyword 'extern' -> looking for the variable in external translation unit
+			ii. Since variables are by default globally visiable, we should use static as much as we can if we don't want it to be global
+		2. Statics inside a class/ struct: the variable is going to share memories with all the instances of the class 
+			i. with variable: there is going to be only one variable with all instances of that class, so its like they don’t belongs to the certain class instance, but the whole class name space
+			ii. with methods: can be called without a class instances, cannot refer to a class instance
+				1) static methods CANNOT access non static variables because a static method does not have a class instance (every methods write inside a class actually regard a class instance as a parameter) 
+	22. local static in C++: statics in local scope
+		1. life time: how long the variable stays in our memory
+		2. scope: where we can access the variable
+local static: the variable would last over the entire program, however the scope is limited to the function
 		
