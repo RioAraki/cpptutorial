@@ -112,4 +112,17 @@
 		1. life time: how long the variable stays in our memory
 		2. scope: where we can access the variable
 local static: the variable would last over the entire program, however the scope is limited to the function
-		
+	23. enums in C++
+		1. enumerations, a way to give a name to a value.
+		2. Value in enum would be auto assigned, and incremented by 1 if not assigned 
+	24. Constructor in C++
+		1. A constructor is a speical type of method which runs everytime we instantiate an object (of a class)
+		2. If we instantiate an object, we don’t initialize the memory of it, and it would refer to what is orginally stored inside
+		3. constructor: name must match the class, can have optional parameter
+		4. We can hide a constructor if we only want people to use some static method inside but not create a class instance in two ways:
+			i. make the constructor method private
+			ii. constructor = delete
+	25. Destructor in C++
+		1. for uninitialize and clean memories that you have used or declared from constructor, or you would get a memory leak
+		2. syntax: ~destructor
+object is going to destructed automatically once the function creates it is terminated
