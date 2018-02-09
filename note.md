@@ -123,6 +123,14 @@ local static: the variable would last over the entire program, however the scope
 			i. make the constructor method private
 			ii. constructor = delete
 	25. Destructor in C++
-		1. for uninitialize and clean memories that you have used or declared from constructor, or you would get a memory leak
+		1. for uninitialized and clean memories that you have used or declared from constructor, or you would get a memory leak
 		2. syntax: ~destructor
-object is going to destructed automatically once the function creates it is terminated
+		3. object is going to destructed automatically once the function creates it is terminated
+	26. Inheritance in C++
+		1. hierarchy of classes which relate to each other, avoid code duplication
+		2. all non private section of a mother class is accessible by child class
+		3. the size of the class equal all variables it stores + all variable its mother class stores
+	27. Virtual Functions in C++
+		1. allow us to override methods in subclasses
+		2. keyword virtual: mark the method in mother class, so that a v table would be created and map all overriding methods in all child class
+keyword override: mark the overrided method in child class, works the same as virtual
