@@ -1,5 +1,5 @@
 # include <iostream>
-
+# include <string>
 
 //class Log {
 //
@@ -49,25 +49,71 @@
 
 // Inheritance in C++
 
-class Entity {
+//class Entity {
+//
+//public:
+//	float X, Y;
+//
+//	void Move(float xa, float ya) {
+//		X += xa;
+//		Y += ya;
+//	}
+//};
+//
+//
+//class player : Entity {
+//
+//public:
+//	const char* Name;
+//
+//	void PrintName(const char* Name) {
+//		std::cout << Name << std::endl;
+//	}
+//
+//};
 
+// virtual and interface
+
+class Printable {
 public:
-	float X, Y;
-
-	void Move(float xa, float ya) {
-		X += xa;
-		Y += ya;
-	}
+	virtual std::string GetClassName() = 0;
 };
 
-
-class player : Entity {
-
+class Entity : public Printable {
 public:
-	const char* Name;
-
-	void PrintName(const char* Name) {
-		std::cout << Name << std::endl;
-	}
-
+	virtual std::string GetName() = 0;
+	std::string GetClassName() override { return "Entity"; }
 };
+
+class Player : public Entity {
+private:
+	std::string m_Name;
+public:
+	Player(const std::string& name)
+		: m_Name(name) {}
+
+	std::string GetName() override { return m_Name; }
+	std::string GetClassName() override { return "Player"; }
+};
+
+void PrintName(Entity* entity) {
+	std::cout << entity->GetName() << std::endl;
+}
+
+class A : public Printable {
+public:
+	std::string GetClassName() { return "A"; }
+};
+
+void Print(Printable* obj) {
+	std::cout << obj->GetClassName() << std::endl;
+}
+
+int main() {
+	Entity* e = new Player(""); //new returns a pointer to an object.
+	PrintName(e);
+	Player* p = new Player("cherno");
+	PrintName(p);
+
+	std::cin.get();
+}
