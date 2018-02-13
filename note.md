@@ -145,3 +145,13 @@ keyword override: mark the overrided method in child class, works the same as vi
 			i. private: only* this class can access the variables; friend keyword -> exception 
 			ii. protected: this class and all subclasses could access the variables
 			iii. public: anyone could access it
+		30. Arrays in C++
+		1. array is a collection of variables (usually for same type)
+		2. array is actually a pointer type
+		3. access unexist index -> memory violation error only in debug mode
+		4. array stores data contiguously in memory
+		5. pointer arithmetic:
+		6. create arrays on heap
+		7. size of array
+			hard to find the actual size, can use this trick, but not on heap based array
+			maintain the size by yourself, size shall be a known static const
