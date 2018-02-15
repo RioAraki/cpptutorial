@@ -131,7 +131,7 @@
 	27. Virtual Functions in C++
 		1. allow us to override methods in subclasses
 		2. keyword virtual: mark the method in mother class, so that a v table would be created and map all overriding methods in all child class
-keyword override: mark the overrided method in child class, works the same as virtual
+		3. keyword override: mark the overrided method in child class, works the same as virtual
 	28. Interface in C++
 		1. there is a specific type of virtual function, pure virtual function 
 		2. pure function allows us to define a function in base class that does not have any implementation, and force subclasses to implement that function. 
