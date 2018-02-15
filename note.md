@@ -109,7 +109,7 @@
 	22. local static in C++: statics in local scope
 		1. life time: how long the variable stays in our memory
 		2. scope: where we can access the variable
-local static: the variable would last over the entire program, however the scope is limited to the function
+		3. local static: the variable would last over the entire program, however the scope is limited to the function
 	23. enums in C++
 		1. enumerations, a way to give a name to a value.
 		2. Value in enum would be auto assigned, and incremented by 1 if not assigned 
