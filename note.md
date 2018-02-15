@@ -79,7 +79,6 @@
 		7. we don't know how big a pointer is (how many memories it points to), we can specify the size by claiming a char* (char is one byte) = new char[8] (ask for 8 bytes of memory)
 		8. memset(ptr, value, bytes) -> fill the block of memory with the data with specified, we need delete[] to delete the allocated memory from memset()
 		9. pointers are still variables and are also stored in memory, so we can get pointer to pointer
-	Example for pointer:
 	16. Reference in C++
 		1. a reference is a way for us to reference a existing variable, they are not new variables/ does not occupy memory/ does not have storage
 		2. difference between & before variable and & after type:
@@ -87,7 +86,6 @@
 			ii. &after type (its part of the type): reference, alias
 				Example:
 		3. reference is more like a syntax sugar, everything could done by a reference could be done by a pointer. It would make our life more easier and make our code looks cleaner
-	Example of reference and pointer:
 	17. Classes in C++
 		1. C++ does not force to do oop
 		2. Classes allow us to group variables together to become a type, and to add functionalities which are called methods.
@@ -145,7 +143,7 @@ keyword override: mark the overrided method in child class, works the same as vi
 			i. private: only* this class can access the variables; friend keyword -> exception 
 			ii. protected: this class and all subclasses could access the variables
 			iii. public: anyone could access it
-		30. Arrays in C++
+	30. Arrays in C++
 		1. array is a collection of variables (usually for same type)
 		2. array is actually a pointer type
 		3. access unexist index -> memory violation error only in debug mode
@@ -155,3 +153,18 @@ keyword override: mark the overrided method in child class, works the same as vi
 		7. size of array
 			hard to find the actual size, can use this trick, but not on heap based array
 			maintain the size by yourself, size shall be a known static const
+	31. strings in C++
+		1. string is an array of charaters (letters/ numbers/ symbols -> text)
+		2. char = 1 byte
+		3. const char* string
+			i. const: we need const here because we don’t want people change the value of string, it should be immutable and have fixed amount of allocated memory
+			ii. char*: it does not mean its heap allocated, we don’t need to delete (only use delete when you use new)
+			iii. null termniation character -> 00 in memory, '\0' in list, indicates end of string
+			iv. single quote -> char; double quote -> string
+		4. C++ string -> std::String
+			i. it has a basic string class -> std::string
+			ii. it is a const char array
+			iii. has a whole bunch of useful methods (strlen/ strcpy)
+			iv. string concatenation:
+		5. pass string to function
+			
