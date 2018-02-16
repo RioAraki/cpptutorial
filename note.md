@@ -167,4 +167,9 @@
 			iii. has a whole bunch of useful methods (strlen/ strcpy)
 			iv. string concatenation:
 		5. pass string to function
-			
+	32. String literals in C++
+		1. anything between double quote, it is a const char array
+		2. some other types
+		3. string literal namespace
+		4. String literals are always stores in read-only memories 
+			even we modify the string, we create a new variable		
