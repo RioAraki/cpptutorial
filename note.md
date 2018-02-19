@@ -173,3 +173,27 @@
 		3. string literal namespace
 		4. String literals are always stores in read-only memories 
 			even we modify the string, we create a new variable		
+	33. CONST in C++
+		1. more like a "promise" that something will not change
+		2. CONST's multiple usage relate to pointer:
+			i. before *: you CANNOT change the content (value) of the pointer; you CAN change the pointer's memory address
+			ii. after *: opposite, you CANNOT change the pointer's memory address; you CAN change the content (value) of the pointer
+		3. CONST with classes and methods
+			i. CONST after method name (right side), in a class: it is not going to change any member/ variables in class. Make sense with a getter method
+			ii. if the function in a class is not going to modify the member in class, mark it as const.
+			iii. mutable keyword: even we mark a method as const so it should not change any variable in the class, we can still modify the variables by give variable a mutable keyword.
+	34. Mutable in C++
+		1. in the context of const: same as 33/3/iii
+		2. in the context of lambda: leave for later
+	35. Member initializer lists in C++
+		1. a way to initialize class member function in the constructor
+		2. if using member initializer, must initialize them in order
+		3. why? : 
+			i. code style, compact to read
+			ii. functional difference: the members in the class would be constructed twice (1. when you declare it in the member region 2. when you give it a value in actual constructor) 
+	36. Ternary operators in C++
+		1. syntax sugar for if statement:
+	37. How to create/ instantiate obbjects in C++
+		1.  how do we instantiate an object: stack vs heap
+			i. stack: lifetime controled by the scope, use it whenever you can
+			ii. heap: lifetime forever, until manual terminate, performance worse, manually free the memory (delete)

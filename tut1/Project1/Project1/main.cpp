@@ -120,15 +120,41 @@
 
 // arrays
 
+//int main() {
+//
+//	int example[5];
+//	int* another = new int[5];
+//
+//	example[0] = 8;
+//	std::cout << example[0] << std::endl;
+//	std::cout << example << std::endl;
+//
+//
+//	std::cin.get();
+//}
+
+class Entity {
+private:
+	std::string m_Name;
+	int m_Score;
+
+public:
+	Entity() : m_Name("Unknown"), m_Score(0) {}
+
+	Entity(const std::string& name) {
+		m_Name = name;
+	}
+
+	const std::string& GetName() const {
+		return m_Name;
+	}
+};
+
 int main() {
-
-	int example[5];
-	int* another = new int[5];
-
-	example[0] = 8;
-	std::cout << example[0] << std::endl;
-	std::cout << example << std::endl;
-
+	Entity e0;
+	std::cout << e0.GetName() << std::endl;
+	Entity e1("Cherno");
+	std::cout << e1.GetName() << std::endl;
 
 	std::cin.get();
 }

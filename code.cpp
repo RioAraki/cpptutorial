@@ -36,6 +36,47 @@ const char string[7] = "Cherno" // cannot edit because of const
 char* string = "Cherno" // cannot edit because it is in heap, read only memory
 char string[7] = "Cherno" // can edit
 
-const wchar_t* name2 = L"Cherno";
-const char16_t* name3 = u"Cherno";
-const char16_t* name4 = U"Cherno";
+const char* name = "Cherno"; //u8"Cherno" 1 byte utf 8
+const wchar_t* name2 = L"Cherno"; // 2 bytes
+const char16_t* name3 = u"Cherno"; // 2 bytes utf 16
+const char16_t* name4 = U"Cherno"; // 4 bytes utf32
+
+using namespace std::string_lieterals; // work after c++14
+std::string name0 = "Cherno"s + " hello";
+// s is an operator function that returns a standard string (no longer string literal, could modify)
+const char* example = R"(Line1 
+Line2
+Line3
+Line4)"
+// ignore esacpe character
+
+int* a = new int; // you can do two things
+*a = 2; // dereference a and change its content
+a = &MAX_AGE; // change which memory address it points to
+
+const int* a = new int; // you cannot change the content of the pointer
+int const* a = new int; // works the same as before
+a = &MAX_AGE; // but you can change where pointer it points to
+
+int* const a = new int; // you cannot change the pointer itself
+*a = 2; // but you can change the content of pointer
+
+const int* const a = new int; // both
+
+ClassName() : variable_name("Unknown") {}
+Entity() : m_Name("Unknown"), m_Score(0) {}
+
+if (level > 5)
+	speed = 10;
+else
+	speed = 5;
+// ternary operator
+speed = level > 5 ? 10 : 5
+speed = level > 5 ? level > 10 ? 15 : 10 : 5 
+
+Entity entity;
+Entity entity = Entity("Cherno");
+Entity entity("Cherno");
+
+Entity* entity = new Entity("Cherno");
+//
