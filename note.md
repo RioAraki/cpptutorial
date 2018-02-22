@@ -197,3 +197,12 @@
 		1.  how do we instantiate an object: stack vs heap
 			i. stack: lifetime controled by the scope, use it whenever you can
 			ii. heap: lifetime forever, until manual terminate, performance worse, manually free the memory (delete)
+	38. The new keyword in C++
+		1. main purpose of new is to allocate memory on the heap specifically based on the type and give us a pointer to that memory
+		2. With classes: not only allocates memory, but also call constructor.
+		3. must use delete with new, delete also calls the destructor
+		4. new[] is a different function: delete with []
+		5. new(specify memory address), placement new
+	39. Implicit Conversion and the explicit keyword in C++
+		1. C++ allows you to implicitly construct an object by assigning the object to its constructor's parameter
+		2. implicit keyword prevent you from doing it

@@ -74,9 +74,33 @@ else
 speed = level > 5 ? 10 : 5
 speed = level > 5 ? level > 10 ? 15 : 10 : 5 
 
+//stack
 Entity entity;
 Entity entity = Entity("Cherno");
 Entity entity("Cherno");
 
+//heap
 Entity* entity = new Entity("Cherno");
-//
+// the pointer points to the location on the heap where the entity object is being allocated
+
+class Entity {
+private:
+	std::string m_Name;
+	int m_Age;
+public:
+	explicit Entity(const std::string& name)
+		: m_Name(name), m_Age(-1) {}
+	Entity(int age)
+		: m_Name("Unknown"), m_Age(age) {}
+};
+
+void PrintEntity(const Entity& entity) {}
+
+int main() {
+	PrintEntity(33); // invalid, explicit keyword
+	PrintEntity("Cherno"); // invalid, "cherno" here is a string literal, not a string
+	PrintEntity(std::string("Cherno")); // valid 
+
+	Entity a = "Cherno";
+	Entity b = 22;
+}
