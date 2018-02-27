@@ -101,6 +101,18 @@ int main() {
 	PrintEntity("Cherno"); // invalid, "cherno" here is a string literal, not a string
 	PrintEntity(std::string("Cherno")); // valid 
 
-	Entity a = "Cherno";
-	Entity b = 22;
+	Entity a = "Cherno"; // valid
+	Entity b(22); // valid
+}
+
+struct Vector2() {
+	float x, y;
+	Vector2(float x, float y): x(x), y(y) {}
+};
+
+Vector2 operator+ (const Vector2& other) const {
+	return Vector2(x + other.x, y + other.y);
+
+std::ostream& operator<<(std::ostream& stream, const Vector2& other) {
+	stream << other.x << ", " << other.y;
 }

@@ -206,3 +206,7 @@
 	39. Implicit Conversion and the explicit keyword in C++
 		1. C++ allows you to implicitly construct an object by assigning the object to its constructor's parameter
 		2. implicit keyword prevent you from doing it
+	40. Operators and operator overloading in C++
+		1. there are a lot of operators, essentially operators are just functions
+		2. we can define our own operator by overloading
+		3. << operator: you could overload it from std::ostream to create your own print function
