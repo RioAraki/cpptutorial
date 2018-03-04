@@ -210,3 +210,11 @@
 		1. there are a lot of operators, essentially operators are just functions
 		2. we can define our own operator by overloading
 		3. << operator: you could overload it from std::ostream to create your own print function
+	41. "This" keyword in C++
+		1. "this" is a pointer to the current object instance that the method belongs to
+		2. "this" is only accessible through a member function (a function belongs to a class)
+	42. Object lifetime in C++ (stack/ scope lifetimes)
+		1. stack based object get destroyed when we get out of the scope
+		2. Common mistake: create object in function, in stack base and expect it to appear out of the scope.
+		3. a lot of usage relate to scope: scoped class/ scoped pointer/ scoped lock
+			i. scoped pointer: a class that is a wrapper over a pointer which upon construction heap allocated the pointer, upon destruction delete the pointer.

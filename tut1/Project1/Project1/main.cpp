@@ -133,28 +133,65 @@
 //	std::cin.get();
 //}
 
+//class Entity {
+//private:
+//	std::string m_Name;
+//	int m_Score;
+//
+//public:
+//	Entity() : m_Name("Unknown"), m_Score(0) {}
+//
+//	Entity(const std::string& name) {
+//		m_Name = name;
+//	}
+//
+//	const std::string& GetName() const {
+//		return m_Name;
+//	}
+//};
+//
+//int main() {
+//	Entity e0;
+//	std::cout << e0.GetName() << std::endl;
+//	Entity e1("Cherno");
+//	std::cout << e1.GetName() << std::endl;
+//
+//	std::cin.get();
+//}
+
 class Entity {
-private:
-	std::string m_Name;
-	int m_Score;
-
 public:
-	Entity() : m_Name("Unknown"), m_Score(0) {}
-
-	Entity(const std::string& name) {
-		m_Name = name;
+	Entity() {
+		std::cout << "Created Entity!" << std::endl;
 	}
 
-	const std::string& GetName() const {
-		return m_Name;
+	~Entity() {
+		std::cout << "Destroyed Entity!" << std::endl;
+	}
+
+};
+
+class ScopedPtr {
+private:
+	Entity * m_Ptr;
+public:
+	ScopedPtr(Entity* ptr): m_Ptr(ptr){}
+	~ScopedPtr(){
+		delete m_Ptr;
 	}
 };
 
-int main() {
-	Entity e0;
-	std::cout << e0.GetName() << std::endl;
-	Entity e1("Cherno");
-	std::cout << e1.GetName() << std::endl;
 
-	std::cin.get();
+int* CreateArray() {
+
+	//int array[50]  // wrong way, create on stack, and it would be cleared when function is terminated
+	int* array = new int[50];
+	return array;
+}
+
+int main() {
+	{
+		Entity e; // stack based
+		Entity* e1 = new Entity(); // heap based
+	}
 }
