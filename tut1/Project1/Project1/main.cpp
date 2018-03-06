@@ -1,6 +1,6 @@
 # include <iostream>
 # include <string>
-
+# include <memory>  // for smart pointer
 //class Log {
 //
 //public:
@@ -169,29 +169,15 @@ public:
 		std::cout << "Destroyed Entity!" << std::endl;
 	}
 
+	void Print() {}
 };
-
-class ScopedPtr {
-private:
-	Entity * m_Ptr;
-public:
-	ScopedPtr(Entity* ptr): m_Ptr(ptr){}
-	~ScopedPtr(){
-		delete m_Ptr;
-	}
-};
-
-
-int* CreateArray() {
-
-	//int array[50]  // wrong way, create on stack, and it would be cleared when function is terminated
-	int* array = new int[50];
-	return array;
-}
 
 int main() {
 	{
-		Entity e; // stack based
-		Entity* e1 = new Entity(); // heap based
-	}
+		std::shared_ptr<Entity> e2;  // e2 is created
+		{
+			std::shared_ptr<Entity> entity = std::make_shared<Entity>(); // entity is created as a shared pointer
+			std::shared_ptr<Entity> e2 = entity; // assign e2 = entity
+		}  // entity dead because it is out of scope. but the shared ptr isnt dead because e2 still alive
+	} // the time when this shared pointer really dead
 }
