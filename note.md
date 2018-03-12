@@ -218,9 +218,15 @@
 		2. Common mistake: create object in function, in stack base and expect it to appear out of the scope.
 		3. a lot of usage relate to scope: scoped class/ scoped pointer/ scoped lock
 			i. scoped pointer: a class that is a wrapper over a pointer which upon construction heap allocated the pointer, upon destruction delete the pointer.
-		43. smart pointers in C++
+	43. smart pointers in C++
 		1. smart pointer is like a wrapper around a real raw pointer: it will heap allocate for you and free the memory for you automatically depends on which smart pointer you use
 			i. unique pointer: cannot have two unique pointer because memory would be freed when one of them dies and the memory get freed.
 			ii. shared pointer: reference counting, keep track how many references you have to your pointer. Once reference count = 0, the pointer gets deleted. Shared pointer would assign a block of memory to store reference count
 			iii. weak pointer: works like a shared pointer
 		2. Try to use smart pointer all the time since they automated the memory management, prevent you from accidenly leaking memory cuz forgetting to call delete
+	44. Copying and copy constructor in C++
+		1. try to avoid unnecessary copy as it takes time
+		2. copy by value, normally " = " is always copy by value;  a = 2; b = a; b = 3 -> b wont affect a; 
+		3. sometimes you do copy by pointer (you got two pointer points to same memory address), both pointer are affected if the memory address they both pointed to are affected. We want to avoid this.
+		4. deep copy: copy the entire object (all fields) which would avoid the copy by pointer.
+

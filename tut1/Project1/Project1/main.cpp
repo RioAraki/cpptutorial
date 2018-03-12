@@ -159,25 +159,26 @@
 //	std::cin.get();
 //}
 
-class Entity {
-public:
-	Entity() {
-		std::cout << "Created Entity!" << std::endl;
-	}
+//class Entity {
+//public:
+//	Entity() {
+//		std::cout << "Created Entity!" << std::endl;
+//	}
+//
+//	~Entity() {
+//		std::cout << "Destroyed Entity!" << std::endl;
+//	}
+//
+//	void Print() {}
+//};
+//
+//int main() {
+//	{
+//		std::shared_ptr<Entity> e2;  // e2 is created
+//		{
+//			std::shared_ptr<Entity> entity = std::make_shared<Entity>(); // entity is created as a shared pointer
+//			std::shared_ptr<Entity> e2 = entity; // assign e2 = entity
+//		}  // entity dead because it is out of scope. but the shared ptr isnt dead because e2 still alive
+//	} // the time when this shared pointer really dead
+//}
 
-	~Entity() {
-		std::cout << "Destroyed Entity!" << std::endl;
-	}
-
-	void Print() {}
-};
-
-int main() {
-	{
-		std::shared_ptr<Entity> e2;  // e2 is created
-		{
-			std::shared_ptr<Entity> entity = std::make_shared<Entity>(); // entity is created as a shared pointer
-			std::shared_ptr<Entity> e2 = entity; // assign e2 = entity
-		}  // entity dead because it is out of scope. but the shared ptr isnt dead because e2 still alive
-	} // the time when this shared pointer really dead
-}
