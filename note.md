@@ -229,4 +229,6 @@
 		2. copy by value, normally " = " is always copy by value;  a = 2; b = a; b = 3 -> b wont affect a; 
 		3. sometimes you do copy by pointer (you got two pointer points to same memory address), both pointer are affected if the memory address they both pointed to are affected. We want to avoid this.
 		4. deep copy: copy the entire object (all fields) which would avoid the copy by pointer.
-
+	45. Arrow in C++
+		1. Arrow would dereference the pointer and let you call method/ variable
+		2. overload arrow: you can define your own arrow when in scoped pointer
