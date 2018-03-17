@@ -232,3 +232,8 @@
 	45. Arrow in C++
 		1. Arrow would dereference the pointer and let you call method/ variable
 		2. overload arrow: you can define your own arrow when in scoped pointer
+	46. Dynamic Arrays in C++
+		1. the standard vector class -> standard template library: the data type container contains is for you to decide.
+		2. std::namespace vector -> essentially a dynamic array list, like a set does not enforce any unique element, not a math vector. It does not have a size.
+		3. it will extend the memory size once the old is full and move everything to the new memory place, so the performance may not be very good
+		4. dynamic array still consumes memory continuously, so save the object rather than pointer would be technically more efficient.

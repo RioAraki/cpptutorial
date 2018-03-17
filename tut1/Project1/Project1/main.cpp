@@ -182,3 +182,30 @@
 //	} // the time when this shared pointer really dead
 //}
 
+#include <vector>
+
+struct Vertex {
+	float x, y, z;
+};
+
+std::ostream& operator<<(std::ostream& stream, const Vertex& vertex) {
+	stream << vertex.x << "," << vertex.y << "," << vertex.z;
+	return stream;
+}
+
+int main() {
+	std::vector<Vertex> vertices; // in java you cant put primitive types inside, but you can do it in c++ since its just a template 
+	vertices.push_back({ 1,2,3 });
+	vertices.push_back({ 4,5,6 });
+
+	for (int i = 0; i < vertices.size(); i++)
+		std::cout << vertices[i] << std::endl;
+
+	for (const Vertex& v : vertices) // range based for loop
+		std::cout << v << std::endl;
+
+	vertices.erase(vertices.begin() + 1); // must erase an iterator
+	vertices.clear();
+	
+	std::cin.get();
+}
