@@ -237,3 +237,7 @@
 		2. std::namespace vector -> essentially a dynamic array list, like a set does not enforce any unique element, not a math vector. It does not have a size.
 		3. it will extend the memory size once the old is full and move everything to the new memory place, so the performance may not be very good
 		4. dynamic array still consumes memory continuously, so save the object rather than pointer would be technically more efficient.
+	47. Optimizing the usage of std::vector in C++
+		1. Main optimizing strategy: avoid copying objects (vectors)
+		2. since the vertex is defined in main function stack frame, it needs to be copied to the actual vertices memory block
+		3. the size of dynamic array is limited three times so is moved and copied three times
