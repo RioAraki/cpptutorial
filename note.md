@@ -241,3 +241,12 @@
 		1. Main optimizing strategy: avoid copying objects (vectors)
 		2. since the vertex is defined in main function stack frame, it needs to be copied to the actual vertices memory block
 		3. the size of dynamic array is limited three times so is moved and copied three times
+	48. Using libraries in C++ (static linking)
+		1. cherno's idea: put everything in the repository, don’t leave it for user to sync with library for C++.
+		2. GLFW linking
+			i. download binary: 32bit vs 64bit -> depends on your application target
+			ii. project -> properties -> C/C++ -> general -> Additional Include Directories -> add relative path $(SolutionDir)Foldername\...
+			iii. include the header file
+			iv. Property -> Linker -> General -> Additional Dependencies -> glfw3.lib; Linker -> General -> Additional Library Directories
+		3. Static linking: the library get put into the executable (inside .exe file). Technically faster. dll.lib -> for static linking, read everything from dll file
+		4. Dynamic linking: link to the runtime, dll files are going to be used
