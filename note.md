@@ -250,3 +250,11 @@
 			iv. Property -> Linker -> General -> Additional Dependencies -> glfw3.lib; Linker -> General -> Additional Library Directories
 		3. Static linking: the library get put into the executable (inside .exe file). Technically faster. dll.lib -> for static linking, read everything from dll file
 		4. Dynamic linking: link to the runtime, dll files are going to be used
+	49. Using dynamic libraries in C++
+		1. linking that happen at runtime, link another external binary file at runtime, the library is loaded when you launch the executable. You can dynamic link in two ways:
+			i. "50/50" way: the executable is aware of the dynamic library and list it as a requirement, but its still a module that loads at runtime
+			ii. "complete dynamically": executable has nothing to do with the library, inside the executable you can write codes with loads dynamic libraries
+		2. GLFW.linking
+			i. glfw3dll.lib ->  a series of pointers of the gldw3.dll file so that we don’t have to recreate the location and everything at runtime. the two files are compiled at the same time.
+			ii. property -> linker -> input -> additional dependencies: add glfw3dll.lib
+			iii. When exe missing dll file, easiest way is to put dll file at the same location as the exe
