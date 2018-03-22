@@ -256,4 +256,13 @@
 	2. GLFW.linking
 		i. glfw3dll.lib ->  a series of pointers of the gldw3.dll file so that we don’t have to recreate the location and everything at runtime. the two files are compiled at the same time.
 		ii. property -> linker -> input -> additional dependencies: add glfw3dll.lib
-		iii. When exe missing dll file, easiest way is to put dll file at the same location as the ex
+		iii. When exe missing dll file, easiest way is to put dll file at the same location as the exe
+51. How to Deal with Multiple Return Values in C++
+	1. in C++ traditionally function could only return one type.
+	2. create a struct with the return structure you want
+	3. Put the output as input parameter and modify the parameter
+	4. return a vector or an array or a tuple (from utility)
+52. template in C++
+	1. what is a template: the compiler writing codes for you based on your given rules. Like a blue print
+	2. work like a java generic
+	3. if you don’t call the template, it does not really exist. When template with different type is called, it works like it copied itself multiple times with different paramter type methods.
