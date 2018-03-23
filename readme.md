@@ -264,5 +264,16 @@
 	4. return a vector or an array or a tuple (from utility)
 52. template in C++
 	1. what is a template: the compiler writing codes for you based on your given rules. Like a blue print
-	2. work like a java generic
+	2. work like a java generic, but not only type can be generic, int could also be generic as the code shows.
 	3. if you don’t call the template, it does not really exist. When template with different type is called, it works like it copied itself multiple times with different paramter type methods.
+53. stack vs heap memory in c++
+	1. stack: memory area usually with pre-defined size
+	2. heap: can grow when program goes on
+	3. physical location of both are in our ram, not cpu 
+	4. how they allocate the memory are completely different
+		i. stack: all we do is to move the stack pointer the type size amount of bytes. And the memory address stack pointer points to is the memory address of the varaible. So literally stack things on top of each other. When the memory in stack is freed, the stack pointer just points back where is used to be. it is really fast.
+		ii. heap: store variable in different memory address
+	5. What does new keyword do?
+		Call function malloc: call os platform specific function which allocate memory for you on the heap. Program keeps free list: keeps track which block of memory are free, where they are and when asked for dynamic memory using, it will go to free list to find a block which is at least the size we need  and book it and return the pointer back
+	6. Allocate memory on stack is only one cpu instruction, pretty fast. Allocate memory on heap is a whole thing with a lot of background operation going on, which is quiet expensive
+		Always try to allocate memory on the stack whenever possible. Unless you need the object's lifetime or loading fairly large object
