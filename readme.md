@@ -277,3 +277,6 @@
 		Call function malloc: call os platform specific function which allocate memory for you on the heap. Program keeps free list: keeps track which block of memory are free, where they are and when asked for dynamic memory using, it will go to free list to find a block which is at least the size we need  and book it and return the pointer back
 	6. Allocate memory on stack is only one cpu instruction, pretty fast. Allocate memory on heap is a whole thing with a lot of background operation going on, which is quiet expensive
 		Always try to allocate memory on the stack whenever possible. Unless you need the object's lifetime or loading fairly large object
+54. Macros in C++
+	1. Using preprocessor to macrofy certain operation,pure text replacing, can go with parameter.
+	2. macro could contain some logic (if else)
