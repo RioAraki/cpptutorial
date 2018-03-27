@@ -280,3 +280,13 @@
 54. Macros in C++
 	1. Using preprocessor to macrofy certain operation,pure text replacing, can go with parameter.
 	2. macro could contain some logic (if else)
+55. auto keyword in C++
+	1. let c++ automatically choose which type to use, so no longer need to worry too much about type. "kind of " turn cpp as a weak type language?
+	2. pros and cons about auto, when should we use it?
+		i. if your variable is a return value of a function, you don’t have to change variable type when you change the function return type by using auto
+			```C++
+			std::string  becomes char* GetName() {}
+			auto name = GetName() // use auto here, dont need to change type
+			```
+		ii. however, in this case you lose the api avaiable to std::string like size(), so maybe don’t use auto in this case for readibility and error-proof
+		iii. you may consider to use auto if the type is really long
