@@ -297,3 +297,7 @@
 		ii. std:array has some api like sort to help you
 		iii. when you create std vector class, it creates underlie data storage on the heap
 		iv. the size of static array is not a variable, more like a template argument, so doesn’t consume memory
+57. function pointer in c++
+	1. function are just cpu instruction, they are still somewhere in the memory as binary and we can assign a function to a variable
+	2. void (* variable_name)() -> actual type of of the function, better to use with auto or make an alias
+

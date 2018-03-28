@@ -116,3 +116,78 @@ Vector2 operator+ (const Vector2& other) const {
 std::ostream& operator<<(std::ostream& stream, const Vector2& other) {
 	stream << other.x << ", " << other.y;
 }
+
+class Entity {
+public:
+	Entity() {
+		std::cout << "Created Entity!" << std::endl;
+	}
+
+	~Entity() {
+		std::cout << "Destroyed Entity!" << std::endl;
+	}
+
+};
+
+class ScopedPtr {
+private:
+	Entity * m_Ptr;
+public:
+	ScopedPtr(Entity* ptr): m_Ptr(ptr){}
+	~ScopedPtr(){
+		delete m_Ptr;
+	}
+};
+
+
+int* CreateArray() {
+
+	//int array[50]  // wrong way, create on stack, and it would be cleared when function is terminated
+	int* array = new int[50];
+	return array;
+}
+
+int main() {
+	{
+		Entity e; // stack based
+		Entity* e1 = new Entity(); // heap based
+		ScopedPtr e = new Entity(); // in this way even we heap allocate entity, 
+		// it would still be destoryed becasue the scoped pointer class itself. 
+		// The scoped pointer object allocated on stack. Once the pointer object
+		// get destoryed -> destructor begins to work and delete the pointer
+	}
+}
+
+int main() {
+	{
+		//std::unique_ptr<Entity> entity(Entity());
+		std::unique_ptr<Entity> entity = std::make_unique<Entity>(); // slightly safer than the above
+		//std::unique_ptr<Entity> e2 = entity; // cannot copy unique pointer
+		entity->Print();
+	}
+}
+
+int main() {
+	{
+		std::shared_ptr<Entity> e2;  // e2 is created
+		{
+			std::shared_ptr<Entity> entity = std::make_shared<Entity>(); // entity is created as a shared pointer
+			std::shared_ptr<Entity> e2 = entity; // assign e2 = entity
+		}  // entity dead because it is out of scope. but the shared ptr isnt dead because e2 still alive
+	} // the time when this shared pointer really dead
+}
+
+char* -> std::string GetName() {}
+auto name = GetName() // use auto here, dont need to change type
+
+
+void PrintValue(int value) {print value}
+void ForEach(const std::vector<int>& values, void(*func)(int)) // here is the func pointer
+{
+	for (int value: values)
+		func(value);
+}
+int main() {
+	std::vector<int> values = {1,5,4,2,3};
+	ForEach(values, PrintValue)
+}
