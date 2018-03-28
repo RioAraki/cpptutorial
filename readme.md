@@ -290,3 +290,10 @@
 			```
 		ii. however, in this case you lose the api avaiable to std::string like size(), so maybe don’t use auto in this case for readibility and error-proof
 		iii. you may consider to use auto if the type is really long
+56. static arrays in C++
+	1. constant size and type once created: std::array<int, 5> data;
+	2. why and when should you use?
+		i. when you for loop you don’t need to pass is the size as parameter
+		ii. std:array has some api like sort to help you
+		iii. when you create std vector class, it creates underlie data storage on the heap
+		iv. the size of static array is not a variable, more like a template argument, so doesn’t consume memory
