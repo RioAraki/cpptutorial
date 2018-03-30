@@ -311,3 +311,8 @@
 59. Why not "using namespace std"
 	1. you want to know which function comes from which namespace
 	2. you may mix up with the function name when having multiple namespaces
+60. Namesapces in C++
+	1. to avoid naming conflict
+61. thread in c++
+	1. multi-threading, do multiple task at the same time
+	2. `thread_name.std::thread join()` : block the current thread and wait a thread to finish its work

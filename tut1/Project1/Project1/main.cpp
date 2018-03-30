@@ -2,6 +2,7 @@
 # include <string>
 # include <memory>  // for smart pointer
 # include <algorithm> // for lambda
+# include <thread> // for thread
 //class Log {
 //
 //public:
@@ -227,15 +228,38 @@
 
 
 // lambda in c++
-void ForEach(const std::vector<int>& values, void(*func)(int)){
-	for (int value : values) {
-		func(value);
+//void ForEach(const std::vector<int>& values, void(*func)(int)){
+//	for (int value : values) {
+//		func(value);
+//	}
+//}
+//
+//int main() {
+//	std::vector<int> values = { 1,5,4,2,3 };
+//	ForEach(values, [](int value) {std::cout << "Value: " << value << std::endl; }); // [] -< usage of lambda
+//	auto it = std::find_if(values.begin(), values.end(), [](int value) {return value > 3; })
+//	std::cin.get();
+//}
+
+// thread in c++
+
+static bool s_Finished = false; // use a static global variable as a flag
+
+void DoWork() {
+	while (!s_Finished) { // use the flag
+		std::cout << "working ..." << std::endl;
+		//std::cin.get(); // if we push it here, it would block the code from printing working
 	}
+	
 }
 
 int main() {
-	std::vector<int> values = { 1,5,4,2,3 };
-	ForEach(values, [](int value) {std::cout << "Value: " << value << std::endl; }); // [] -< usage of lambda
-	auto it = std::find_if(values.begin(), values.end(), [](int value)(return value > 3; ))
+	std::thread worker(DoWork); // function pointer
+
 	std::cin.get();
+	s_Finished = true; // change the flag, so DoWork would finish the while loop and end
+
+	worker.join(); // let the current thread wait until worker thread finished
+	std::cin.get();
+
 }
