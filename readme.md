@@ -307,4 +307,7 @@
 	1. Anonymous function, you can use lambda once you have the function pointer. 
 	2. syntax: `[] (type parameter) {actual function content}`
 	3. [] -> captures: 
-		A lot of different usages, need to refer to the documents
+	4. A lot of different usages, need to refer to the documents
+59. Why not "using namespace std"
+	1. you want to know which function comes from which namespace
+	2. you may mix up with the function name when having multiple namespaces
