@@ -3,6 +3,7 @@
 # include <memory>  // for smart pointer
 # include <algorithm> // for lambda
 # include <thread> // for thread
+# include <chrono> // for time recording
 //class Log {
 //
 //public:
@@ -243,23 +244,55 @@
 
 // thread in c++
 
-static bool s_Finished = false; // use a static global variable as a flag
+//static bool s_Finished = false; // use a static global variable as a flag
+//
+//void DoWork() {
+//	while (!s_Finished) { // use the flag
+//		std::cout << "working ..." << std::endl;
+//		//std::cin.get(); // if we push it here, it would block the code from printing working
+//	}
+//
+//}
+//
+//int main() {
+//	std::thread worker(DoWork); // function pointer
+//
+//	std::cin.get();
+//	s_Finished = true; // change the flag, so DoWork would finish the while loop and end
+//
+//	worker.join(); // let the current thread wait until worker thread finished
+//	std::cin.get();
+//
+//}
 
-void DoWork() {
-	while (!s_Finished) { // use the flag
-		std::cout << "working ..." << std::endl;
-		//std::cin.get(); // if we push it here, it would block the code from printing working
+// timing in c++
+
+struct Timer {
+	std::chrono::time_point<std::chrono::steady_clock> start, end;
+	std::chrono::duration<float> duration;
+
+	Timer() {
+		start = std::chrono::high_resolution_clock::now();
 	}
-	
+
+	~Timer() {
+		end = std::chrono::high_resolution_clock::now();
+		duration = end - start;
+
+		float ms = duration.count() * 1000.0f; // must perform a type change or cannot print the result
+		std::cout << "Timer took " << ms << "S" << std::endl;
+	}
+};
+
+void Function() {
+	Timer timer;
+
+	for (int i = 0; i < 100; i++) {
+		std::cout << "hello\n";
+	}
 }
 
 int main() {
-	std::thread worker(DoWork); // function pointer
-
+	Function();
 	std::cin.get();
-	s_Finished = true; // change the flag, so DoWork would finish the while loop and end
-
-	worker.join(); // let the current thread wait until worker thread finished
-	std::cin.get();
-
 }

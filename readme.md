@@ -316,3 +316,6 @@
 61. thread in c++
 	1. multi-threading, do multiple task at the same time
 	2. `thread_name.std::thread join()` : block the current thread and wait a thread to finish its work
+62. timing in c++
+	1. benchmarking your project
+	2. std::chrono, learn the api. An easy timer:
