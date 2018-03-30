@@ -1,6 +1,7 @@
 # include <iostream>
 # include <string>
 # include <memory>  // for smart pointer
+# include <algorithm> // for lambda
 //class Log {
 //
 //public:
@@ -210,16 +211,31 @@
 //	std::cin.get();
 //}
 
-template<typename T, int N>
-class Array {
-private:
-	T m_Array[N];
-public:
-	int GetSize() const { return N;  }
-};
+//template<typename T, int N>
+//class Array {
+//private:
+//	T m_Array[N];
+//public:
+//	int GetSize() const { return N;  }
+//};
+//
+//int main() {
+//	Array<std::string, 10> array;
+//	std::cout << array.GetSize() << std::endl;
+//	std::cin.get();
+//}
+
+
+// lambda in c++
+void ForEach(const std::vector<int>& values, void(*func)(int)){
+	for (int value : values) {
+		func(value);
+	}
+}
 
 int main() {
-	Array<std::string, 10> array;
-	std::cout << array.GetSize() << std::endl;
+	std::vector<int> values = { 1,5,4,2,3 };
+	ForEach(values, [](int value) {std::cout << "Value: " << value << std::endl; }); // [] -< usage of lambda
+	auto it = std::find_if(values.begin(), values.end(), [](int value)(return value > 3; ))
 	std::cin.get();
 }

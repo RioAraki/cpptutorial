@@ -303,4 +303,8 @@
 57. function pointer in c++
 	1. function are just cpu instruction, they are still somewhere in the memory as binary and we can assign a function to a variable
 	2. void (* variable_name)() -> actual type of of the function, better to use with auto or make an alias
-
+58. Lambdas in C++
+	1. Anonymous function, you can use lambda once you have the function pointer. 
+	2. syntax: `[] (type parameter) {actual function content}`
+	3. [] -> captures: 
+		A lot of different usages, need to refer to the documents
