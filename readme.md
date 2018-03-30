@@ -1,3 +1,6 @@
+# A note for youtube video series: https://www.youtube.com/watch?v=18c3MTX0PK0&list=PLlrATfBNZ98dudnM48yfGUldqGD0S4FFb
+
+
 1. Native language 通过不同的 compiler 直接翻译成 machine code，更加底层
 2. linker，负责把不同 file 的 function 连接到一起，而引用一个别的 file 的 function 只需要 declaration，compiler 会无条件相信你
 3. C++本质上就是text file, 而从text file 变成 exe 大抵需要两部 一是 compile 二是 linking。compiler就是把 c++ text 变为 obj file为之后link做准备的过程。
