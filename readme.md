@@ -1,4 +1,5 @@
-# A note for youtube video series: https://www.youtube.com/watch?v=18c3MTX0PK0&list=PLlrATfBNZ98dudnM48yfGUldqGD0S4FFb
+# A note for youtube video series
+https://www.youtube.com/watch?v=18c3MTX0PK0&list=PLlrATfBNZ98dudnM48yfGUldqGD0S4FFb
 
 
 1. Native language 通过不同的 compiler 直接翻译成 machine code，更加底层
