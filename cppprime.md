@@ -1,3 +1,7 @@
+## Chapter 1  Getting started
+
+basic stuff
+
 # Part 1 the basics
 
 ## Chapter 2 vairables and basic types
@@ -51,5 +55,32 @@ octal/ hexadecimal chooses smallest of int, unsigned int, long, unsigned… in w
 These can be overrided using a suffix
 
 ##### character and character string literals
+
+char literal in '', string literal in "" which is an array of constant chars and compiler would append a null character '/0' to the end of string literal
+Escape sequence for some nonprintable chars (eg: newline -> \n)
+
+##### Specifying the type of a literal
+
+override the default type of an int, float point or char (eg: u8"hi!")
+
+##### Boolean and pointer literals
+
+the word true and false are literals of type bool, the word nullptr is a pointer literal
+
+### 2.2 Variables
+
+named storage our program can manipulate. Each variable has a type, which determines the size and layout of the variable's memory, the set of operations that can be applied. variable and objects in C++ are interchangable. (object: a region of memory that has a type)
+
+#### 2.2.1 Variable definitions
+
+simple definition: type specifier, variable names, semicolon.
+library type (std::)
+
+##### Initializers
+
+Object that is initialized gets the specified value at the moment its created. Initialization and assignment are DIFFERENT in C++, not a form of assignment. There are several forms of initializations
+
+##### list initializaion
+
 
 
