@@ -4,4 +4,4 @@
 
 [Youtube video series: the cherno project c++](https://github.com/RioAraki/cpptutorial/blob/master/theChernoProject.md)
 
-==Feel free== to make a correction if you find any mistake in my note
+Feel free to make a correction if you find any mistake in my note
