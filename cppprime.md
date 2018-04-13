@@ -82,5 +82,35 @@ Object that is initialized gets the specified value at the moment its created. I
 
 ##### list initializaion
 
+```
+int i = 0;
+int units_sold = {0};
+int units_sold {0};
+int units_sold (0);
+```
+all four above mean the same
+use curly brace for list initialization
+In C++ 11, list initialization would cause error if initializer lead to loss of information, eg: 
+```
+long double ld = 3.1415926
+int a {ld} // error: narrwing conversion required, long to int is likely to lose data
+int c (ld) // ok: value will be truncated
+```
+
+##### default initializaion
+
+define a variable without initializer, the variable is default initialized and have default value (depends on type and where the variable is defined). Variable defined **outside any function** body are initialized to zero. **Inside function** -> uninitialized, value of uninitialized is undefined. It is an error to copy or try to access the value of a variable whose value is undefined.
+
+The class decides if we can define objects of that type without an initializer. If we can, the class determines what value the resulting object will have. Most classes let us define objects without explicit initializers such classes supply an appropriate default value for us. Some classes require every object be explicitly initialized. Compiler would complain if not.
+
+#### 2.2.2 Variable declarations and definitions
+
+separate compilation: split program into several files, each of which compiled independely. (think about library). to support separate compilation, we have declaration and definition:
+declaration: make the name known to the program, specifiy var name and type -> **extern** keyword to not provide explicit initializer.
+definition: creates the associated entity. definition IS a declaration, it includes a explicit initializer.
+
+static typing: types are checked at compile time -> type checking. 
+
+#### 2.2.3 Identifiers
 
 
