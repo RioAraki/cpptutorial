@@ -173,3 +173,45 @@ Both reference and pointer give indirect access to other object, but the differe
 
 ##### Other pointer operations
 
+Pointer could be true and false (if null).  Two pointers hold the same address if they both null.
+
+##### void* Pointers
+
+void*, special pointer type that holds address of any object, type of the object at that address is unknown. There are only limited things we can do with void* pointer:
+	- compare with another pointer
+	- pass it to or return it from a function
+	- assign it to another void* pointer
+	- We **Cannot** use a void* to operate on the object it addresses since we don’t know object's type and type determines operation
+We use a void* pointer to deal with memory as memory rather than using the pointer to access the object stored in that memory.
+
+#### 2.3.3 Understanding Compound Type Declarations
+
+A single definition might define variables of different types: `int i = 1024, *p = &i, &r = i` , i is int, p is a pointer to int, r is reference to int.
+
+##### Defining multiple variables
+
+`int* p`, remember `int*` is not a type, `int` is. `*` just modifies the type but says nothing about any other objects that might be declared in the same statement.
+`int* p1, p2`, p1 is a pointer to int, p2 is an int
+`int* p1, *p2`, both are pointer
+These style might be confusing, it is important to choose one  and use it consistently.
+
+##### Pointer to pointers
+
+pointer to pointer **!=** pointer in terms of type:
+```
+int i = 1024;
+int *pi = &i;
+int **ppi = &pi;
+```
+
+##### References to pointers
+
+Again we cannot have a pointer to a reference, but pointer is an object, we can define a reference to a pointer.
+```
+int i = 42;
+int *p;                 // p -> pointer to int
+int *&r = p;        // r is a reference to the pointer p
+r = &i;                 // r refers to pointer p, assign &i to r makes p points to i
+*r = 0;                 // dereference r yields i, changes i to 0
+```
+syntax of `r` is wired. Easiest way to interpret is to read the definition from **RIGHT to LEFT**. `r` then `&` then `*` then `int`,  symbol closest to name of variable (`&`) has the immediate effect. Thus we know `r` is a reference. Rest of the decorator determines the type `r` refers. `*` in this case, means `r` refers to a pointer type, and `int` for int pointer.
