@@ -88,4 +88,77 @@ int c (ld) // ok: value will be truncated
 
 ##### default initializaion
 
-define a variable without initializer, the variable is default initialized and have default value (depends on type and where the variable is defined)
+define a variable without initializer, the variable is default initialized and have default value (depends on type and where the variable is defined). Variable defined **outside any function** body are initialized to zero. **Inside function** -> uninitialized, value of uninitialized is undefined. It is an error to copy or try to access the value of a variable whose value is undefined.
+
+The class decides if we can define objects of that type without an initializer. If we can, the class determines what value the resulting object will have. Most classes let us define objects without explicit initializers such classes supply an appropriate default value for us. Some classes require every object be explicitly initialized. Compiler would complain if not.
+
+#### 2.2.2 Variable declarations and definitions
+
+separate compilation: split program into several files, each of which compiled independely. (think about library). to support separate compilation, we have declaration and definition:
+declaration: make the name known to the program, specifiy var name and type -> **extern** keyword to not provide explicit initializer.
+definition: creates the associated entity. definition IS a declaration, it includes a explicit initializer.
+
+static typing: types are checked at compile time -> type checking. 
+
+#### 2.2.3 Identifiers
+
+how to name your variable: letters, digits, underscore. Must begin with underscore or letter. Case sensitive. Don't use the same name as keywords (char, long). identifiers outside a function may not begin with undersocre. No two consecutive underscore.
+
+##### Conventions for variable names
+
+variable name: lowercase, aa_bb/ aaBb if with multiple words
+classes: begin with uppercase
+
+#### 2.2.4 Scope of a name
+
+global scope: accessible throughout the program
+block scope: in the range of bracket
+
+##### Nested scope
+
+scope can contain other scope, inner scope/ outer scope
+```
+int a = 42;
+int main() {
+	print a; // output 42
+	int a = 100; // new local object
+	print a; // output 100, refer to local a
+	print ::a; // explicitly refer to global a
+}
+```
+in practice, almost always a bad idea to defind a local variable with the same name as a global variable
+
+### 2.3 Compound Types
+
+compound type is a type defined in terms of another type -> References and pointers. As weve seen beofre, declaration is a base type + list of declarators, each  declarator names a variable and give the variable a type that is related to the base type.
+
+#### 2.3.1 References
+
+A reference defines an alternative name for an object. A reference type "refers to" another type. A reference ** bind** to the original initial object. There is **NO** way to rebind a reference to refer to a different object. A reference is an alias. Reference is **NOT** an object. We may not define a reference to a reference.
+
+#### 2.3.2 Pointers
+
+A pointer is a compound type that "points to" another type, used for indirect access to other objects. Pointer is an object in its own right. Pointers can be assigned and copied. Single pointer can point to several different objects over lifetime. Pointer need **NOT** be initialized at the time it is defined. Pointers defined at block scope have undefined value if they are not initialized.
+
+##### Taking the address of an object
+
+Pointer holds address of another object by using address-of operator (&). Here the & is different from reference. Still type must match,
+```
+int ival = 42;
+int *p = &ival; // p holds address of ival; p is a pointer to ival
+```
+we cannot define a pointer to a reference as refernce is not object and does not have memory address. Types of the pointer and the object it points must match.
+
+##### Pointer value
+
+the value stored in a pointer can be in one of the four states:
+	1. point to an object
+	2. point to the location just immediately past the end of an object
+	3. null pointer (not bound to any object)
+	4. invalid (error to copy or access, uninialized variable)
+
+##### Using a pointer to access an object
+
+when a pointer points to an object, use the **derefernce** operator (*) to access the object. We may only dereference a valid pointer that points to an object
+
+##### Null pointer
