@@ -162,3 +162,14 @@ the value stored in a pointer can be in one of the four states:
 when a pointer points to an object, use the **derefernce** operator (*) to access the object. We may only dereference a valid pointer that points to an object
 
 ##### Null pointer
+
+does not point to any object. Let pointer equals to : `nullptr` (most direct approach, C++11 std), `0` (not int 0),`NULL` (old, as a preprocessor variable, as part of std::) can make a null pointer.
+
+Recommend to initialize all pointers even with nullptr.
+
+##### Assignment and pointers
+
+Both reference and pointer give indirect access to other object, but the difference is that **reference is not an object** and we cannot refer a reference to a different object, we always get the object to what we initially bound.
+
+##### Other pointer operations
+
