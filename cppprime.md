@@ -158,4 +158,29 @@ Pointer holds address of another object by using address-of operator (&). Here t
 int ival = 42;
 int *p = &ival; // p holds address of ival; p is a pointer to ival
 ```
+we cannot define a pointer to a reference as refernce is not object and does not have memory address. Types of the pointer and the object it points must match.
+
+##### Pointer value
+
+the value stored in a pointer can be in one of the four states:
+	1. point to an object
+	2. point to the location just immediately past the end of an object
+	3. null pointer (not bound to any object)
+	4. invalid (error to copy or access, uninialized variable)
+
+##### Using a pointer to access an object
+
+when a pointer points to an object, use the **derefernce** operator (*) to access the object. We may only dereference a valid pointer that points to an object
+
+##### Null pointers
+
+does not point to any object. Let pointer equals to : `nullptr` (most direct approach, C++11 std), `0` (not int 0),`NULL` (old, as a preprocessor variable, as part of std::) can make a null pointer.
+
+Recommend to initialize all pointers even with nullptr.
+
+##### Assignment and pointers
+
+Both reference and pointer give indirect access to other object, but the difference is that **reference is not an object** and we cannot refer a reference to a different object, we always get the object to what we initially bound.
+
+##### Other pointer operations
 
