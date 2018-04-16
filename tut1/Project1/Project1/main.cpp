@@ -4,6 +4,13 @@
 # include <algorithm> // for lambda
 # include <thread> // for thread
 # include <chrono> // for time recording
+# include <vector>
+
+
+
+
+
+
 //class Log {
 //
 //public:
@@ -185,7 +192,7 @@
 //	} // the time when this shared pointer really dead
 //}
 ////
-#include <vector>
+
 
 //struct Vertex {
 //	float x, y, z;
@@ -264,35 +271,36 @@
 //	std::cin.get();
 //
 //}
+//
+//// timing in c++
+//
+//struct Timer {
+//	std::chrono::time_point<std::chrono::steady_clock> start, end;
+//	std::chrono::duration<float> duration;
+//
+//	Timer() {
+//		start = std::chrono::high_resolution_clock::now();
+//	}
+//
+//	~Timer() {
+//		end = std::chrono::high_resolution_clock::now();
+//		duration = end - start;
+//
+//		float ms = duration.count() * 1000.0f; // must perform a type change or cannot print the result
+//		std::cout << "Timer took " << ms << "S" << std::endl;
+//	}
+//};
+//
+//void Function() {
+//	Timer timer;
+//
+//	for (int i = 0; i < 100; i++) {
+//		std::cout << "hello\n";
+//	}
+//}
+//
+//int main() {
+//	Function();
+//	std::cin.get();
+//}
 
-// timing in c++
-
-struct Timer {
-	std::chrono::time_point<std::chrono::steady_clock> start, end;
-	std::chrono::duration<float> duration;
-
-	Timer() {
-		start = std::chrono::high_resolution_clock::now();
-	}
-
-	~Timer() {
-		end = std::chrono::high_resolution_clock::now();
-		duration = end - start;
-
-		float ms = duration.count() * 1000.0f; // must perform a type change or cannot print the result
-		std::cout << "Timer took " << ms << "S" << std::endl;
-	}
-};
-
-void Function() {
-	Timer timer;
-
-	for (int i = 0; i < 100; i++) {
-		std::cout << "hello\n";
-	}
-}
-
-int main() {
-	Function();
-	std::cin.get();
-}

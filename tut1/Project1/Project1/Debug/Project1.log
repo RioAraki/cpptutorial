@@ -1,2 +1,2 @@
 ﻿  main.cpp
-  Project1.vcxproj -> E:\C++tut\tut1\Project1\Debug\Project1.exe
+LINK : fatal error LNK1561: entry point must be defined
