@@ -226,3 +226,22 @@ r = &i;                 // r refers to pointer p, assign &i to r makes p points 
 *r = 0;                 // dereference r yields i, changes i to 0
 ```
 syntax of `r` is wired. Easiest way to interpret is to read the definition from **RIGHT to LEFT**. `r` then `&` then `*` then `int`,  symbol closest to name of variable (`&`) has the immediate effect. Thus we know `r` is a reference. Rest of the decorator determines the type `r` refers. `*` in this case, means `r` refers to a pointer type, and `int` for int pointer.
+
+### 2.4 Const Qualifier
+
+`const`: Variable whose value cannot be changed. const object must be initialized as we cannot change the value of it.
+
+##### Initialization and const
+
+The const type means we cannot change the object, but we can use it for initialize other object. it wont bring the constness to the variable it assigned.
+
+##### By default, const objects are local to a file
+
+Compiler would usually replace the use of CONST to its corresponding value. When we split a program into multiple files, every file uses that const must have access to its initializer, to see the initializer, the variable must be defined in every file that wants to use the variable's value. **To avoid multiple definitions of the same variable, const variables are local to the file.** If we don’t want this, we could define const in one file and declare it in other files that use that object by using keyword `extern`
+```
+// from file_1.cc
+extern const int bufSize = fcn();
+// file_1.h
+extern const int bufSize; // same var bufSize as defined in file_1.cc
+```
+
