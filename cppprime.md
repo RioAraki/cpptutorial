@@ -1,3 +1,5 @@
+# Some notes from reading c++prime
+--------------------------------------
 ## Chapter 1  Getting started
 
 basic stuff
@@ -244,4 +246,65 @@ extern const int bufSize = fcn();
 // file_1.h
 extern const int bufSize; // same var bufSize as defined in file_1.cc
 ```
+
+#### 2.4.1 References to const
+
+we can bind a reference to an object of a const type. Unlike ordinary reference, a reference to const cannot be used to change the object to which reference is bound.
+```
+const int ci = 1024;
+//int &ri = ci; // error: binding 'const int' to reference of type 'int&' discards qualifiers
+const int &ri = ci;
+```
+some wording, const reference == reference to const, though **technically speaking there isnt a const reference since reference is not an object.**
+
+##### Initialization and references to const
+
+**We can initialize a reference to const from any expression that can be converted to the type of the reference. In particular, we can bind a reference to const to a nonconst object, a literal, or a more general expression**:
+```
+int i = 42;
+const int &r1 = i; // okconst int &r2 = 42; // ok
+const int &r3 = r1 * 2; // ok
+int &r4 = r * 2
+
+double dval = 3.14;
+const int &ri = dval; // valid, but must be const
+```
+
+##### A reference to const may refer to an object that is not const
+
+Binding a reference to const to an object says nothing about whether the underlying object itself is const.
+```
+int i = 42;
+int &r1 = i; // bound to i
+const int &r2 = i; // bound to i, but cannot be used to change i
+r1 = 0; //r1 is not const; i is now 0 
+cout << r2; // r2 is 0, being changed cause r1 bound to i and i is assigned to 0
+r2 = 0; // error: r2 is const
+```
+
+#### 2.4.2 Pointers and const
+
+We can define pointers point to either const or nonconst types. A pointer to const may not be used to change the object to which the pointer points.
+```
+const double pi = 3.14;
+double *ptr = &pi; // error, cannot use a plain pointer to point const
+const double *cptr = &pi; // ok
+*cptr = 42; // cannot assign to *cptr
+```
+As with reference, we can use a **pointer to const** to point to a **nonconst** object. A pointer to const says nothing about whether the object to which the pointer points is const. There is no guarantee that an object pointed to by a pointer to const won't change.
+
+##### const pointers
+
+Unlike references, pointers are objects, so we can have a pointer that is itself const. Indicating pointer is const by putting const after *.
+```
+int e = 0;
+int *const pe = &e;
+const double pi = 3.14;
+const double *const pip = &pi;
+* pe = 0; // ok, we only reset the value of the object to which curErr is bound, 
+```
+
+#### 2.4.3 Top-level const
+
+we use the term top-level const to indicate that the pointer itself is a const. When a pointer can point to a const object, we refer to that const as a low-level const.
 
