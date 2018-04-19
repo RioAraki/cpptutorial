@@ -215,3 +215,109 @@ r = &i;                 // r refers to pointer p, assign &i to r makes p points 
 *r = 0;                 // dereference r yields i, changes i to 0
 ```
 syntax of `r` is wired. Easiest way to interpret is to read the definition from **RIGHT to LEFT**. `r` then `&` then `*` then `int`,  symbol closest to name of variable (`&`) has the immediate effect. Thus we know `r` is a reference. Rest of the decorator determines the type `r` refers. `*` in this case, means `r` refers to a pointer type, and `int` for int pointer.
+
+### 2.4 Const Qualifier
+
+`const`: Variable whose value cannot be changed. const object must be initialized as we cannot change the value of it.
+
+##### Initialization and const
+
+The const type means we cannot change the object, but we can use it for initialize other object. it wont bring the constness to the variable it assigned.
+
+##### By default, const objects are local to a file
+
+Compiler would usually replace the use of CONST to its corresponding value. When we split a program into multiple files, every file uses that const must have access to its initializer, to see the initializer, the variable must be defined in every file that wants to use the variable's value. **To avoid multiple definitions of the same variable, const variables are local to the file.** If we don’t want this, we could define const in one file and declare it in other files that use that object by using keyword `extern`
+```
+// from file_1.cc
+extern const int bufSize = fcn();
+// file_1.h
+extern const int bufSize; // same var bufSize as defined in file_1.cc
+```
+
+#### 2.4.1 References to const
+
+we can bind a reference to an object of a const type. Unlike ordinary reference, a reference to const cannot be used to change the object to which reference is bound.
+```
+const int ci = 1024;
+//int &ri = ci; // error: binding 'const int' to reference of type 'int&' discards qualifiers
+const int &ri = ci;
+```
+some wording, const reference == reference to const, though **technically speaking there isnt a const reference since reference is not an object.**
+
+##### Initialization and references to const
+
+**We can initialize a reference to const from any expression that can be converted to the type of the reference. In particular, we can bind a reference to const to a nonconst object, a literal, or a more general expression**:
+```
+int i = 42;
+const int &r1 = i; // okconst int &r2 = 42; // ok
+const int &r3 = r1 * 2; // ok
+int &r4 = r * 2
+
+double dval = 3.14;
+const int &ri = dval; // valid, but must be const
+```
+
+##### A reference to const may refer to an object that is not const
+
+Binding a reference to const to an object says nothing about whether the underlying object itself is const.
+```
+int i = 42;
+int &r1 = i; // bound to i
+const int &r2 = i; // bound to i, but cannot be used to change i
+r1 = 0; //r1 is not const; i is now 0 
+cout << r2; // r2 is 0, being changed cause r1 bound to i and i is assigned to 0
+r2 = 0; // error: r2 is const
+```
+
+#### 2.4.2 Pointers and const
+
+We can define pointers point to either const or nonconst types. A pointer to const may not be used to change the object to which the pointer points.
+```
+const double pi = 3.14;
+double *ptr = &pi; // error, cannot use a plain pointer to point const
+const double *cptr = &pi; // ok
+*cptr = 42; // cannot assign to *cptr
+```
+As with reference, we can use a **pointer to const** to point to a **nonconst** object. A pointer to const says nothing about whether the object to which the pointer points is const. There is no guarantee that an object pointed to by a pointer to const won't change.
+
+##### const pointers
+
+Unlike references, pointers are objects, so we can have a pointer that is itself const. Indicating pointer is const by putting const after *.
+```
+int e = 0;
+int *const pe = &e;
+const double pi = 3.14;
+const double *const pip = &pi;
+* pe = 0; // ok, we only reset the value of the object to which curErr is bound, 
+```
+
+#### 2.4.3 Top-level const
+
+We use the term top-level const to indicate that the pointer itself is a const. When a pointer can point to a const object, we refer to that const as a low-level const. Top-level const indicates that an object itself is const. Low level const appears in the base type of compound types such as pointers or references. 
+```
+int i = 0;
+int *const p1 = &i; // can change *p1, cannot change p1, const is top-level
+const int ci = 42; // cannot change ci, const is top-level
+const int *p2 = &ci; // we can change p2, cannot change *p2,const is low-level
+const int *const p3 = p2 // 1st const is low-level, means the value it points to is const, 2nd const is top-level, means the pointer itself is also const
+const int &r = ci; // const in reference is always low -level
+
+i = ci; // ok, copy value of i, top-level const is ignored
+p2 =p3; //ok, p2's const is low-level, since p3 is const it is satisfied.
+p2 = &i; // error, i is not const, does not match p2's low level const
+int &r = ci; // error: cannot bind int& to const int
+const int &r2 = i; // ok: can bind const int& to plain int 
+```
+
+#### 2.4.4 constexpr and Constant Expressions
+
+A constant expression is an expression whose value cannot change and that can be evaluated at **compile time**, such as literal. A const object that is initialized from a const expression is also a const expression.
+```
+const int max_files = 20; //max files is a const expression
+const int limit = max_files + 1; // limit is a const expression
+int staff_size =27; // staff_size is not a const expression
+const int sz = get_size(); // sz not const expression
+```
+staff_size is initialized from a literal, but its not a const expression because it is a plain int, not a const int. Even sz is a cnst, the value of its initializer is now known until runtime, so sz not const expression
+
+##### constexpr Variables
