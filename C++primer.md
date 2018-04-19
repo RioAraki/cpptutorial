@@ -321,3 +321,5 @@ const int sz = get_size(); // sz not const expression
 staff_size is initialized from a literal, but its not a const expression because it is a plain int, not a const int. Even sz is a cnst, the value of its initializer is now known until runtime, so sz not const expression
 
 ##### constexpr Variables
+
+In C++ 11, we can ask compiler to verify that a variable is a const expression by declaring the variable in a `constexpr` declaration. Variable declared as `constexpr` are implicitly const and must be inialized by const expressions.
