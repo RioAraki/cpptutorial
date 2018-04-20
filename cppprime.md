@@ -381,5 +381,13 @@ Or by alias declaration:
 ```
 using SI = Sales_item; SI is a synonym for sales_item
 ```
+##### Pointers, const, and Type Aliases
+```
+typedef char *pstring;
+const pstring cstr = 0; // cstr is a const pointer to char
+const pstring *ps; // ps is a pointer to a constant pointer to char
+```
+the base type in these declarations is cont pstring. Type pstring is "pointer to char", so const pstring is a constant pointer to char - not a pointer to const char. So don’t just simply replace pstring to char *.
 
+##### 2.5.2 The auto type specifier
 
