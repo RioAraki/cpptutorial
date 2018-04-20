@@ -306,5 +306,80 @@ const double *const pip = &pi;
 
 #### 2.4.3 Top-level const
 
-we use the term top-level const to indicate that the pointer itself is a const. When a pointer can point to a const object, we refer to that const as a low-level const.
+We use the term top-level const to indicate that the **pointer itself is a const**. When a pointer can point to a **const object**, we refer to that const as a low-level const. Top-level const indicates that an object itself is const. Low level const appears in the base type of compound types such as pointers or references. 
+```
+int i = 0;
+int *const p1 = &i; // can change *p1, cannot change p1, const is top-level
+const int ci = 42; // cannot change ci, const is top-level
+const int *p2 = &ci; // we can change p2, cannot change *p2,const is low-level
+const int *const p3 = p2 // 1st const is low-level, means the value it points to is const, 2nd const is top-level, means the pointer itself is also const
+const int &r = ci; // const in reference is always low -level
+
+i = ci; // ok, copy value of i, top-level const is ignored
+p2 =p3; //ok, p2's const is low-level, since p3 is const it is satisfied.
+p2 = &i; // error, i is not const, does not match p2's low level const
+int &r = ci; // error: cannot bind int& to const int
+const int &r2 = i; // ok: can bind const int& to plain int 
+```
+
+#### 2.4.4 constexpr and Constant Expressions
+
+A constant expression is an expression whose **value cannot change and that can be evaluated at compile time**, such as literal. A const object that is initialized from a const expression is also a const expression.
+```
+const int max_files = 20; //max files is a const expression
+const int limit = max_files + 1; // limit is a const expression
+int staff_size =27; // staff_size is not a const expression
+const int sz = get_size(); // sz not const expression
+```
+staff_size is initialized from a literal, but its not a const expression because it is a plain int, not a const int. Even sz is a cnst, the value of its initializer is now known until runtime, so sz not const expression
+
+##### constexpr Variables
+
+In C++ 11, we can ask compiler to verify that a variable is a const expression by declaring the variable in a `constexpr` declaration. Variable declared as `constexpr` are implicitly const and must be inialized by const expressions.
+```
+constexpr int mf = 20; //ok
+constexpr int limit = mf+1; //ok
+constexpr int sz = size(); // only if size is a constexpr function
+```
+Generally it is a good idea to use `constexpr` for vars you intend to use as constant expressions.
+
+##### Literal types
+
+The type we can use in a `constexpr` is called literal types, they are simple enough to have literal values. arithmetic, reference, pointer types are literal types. string types are not. There are other kinds of literal types.
+
+Although we can define pointers and references as `constexpr`s, the objects we use to initialize them are strictly limited. We can initialize a `constexpr` pointer from the `nullptr` literal or 0. We can also point to an object remains at a fixed address.
+
+Variables defined **inside** a function ordinarily are not stored at a fixed address. Hence we cannot use a `constexpr` pointer to point to such variables. Variables defined **outside** a function is a const expression
+
+##### Pointers and constexpr
+
+```
+const int *p = nullptr; \\ p is a pointer to const int
+constexpr int *q = nullptr; \\ q is a const pointer to int
+```
+p is a pointer to const, q is a const pointer. Th difference is a consequence of the fact that constexpr imposes a tpo-level const on the object it defines.
+```
+constexpr int *np = nullptr; // np is a const pointer to int that is null
+int j = 0;
+constexpr int i = 42; // type of i is const int
+constexpr const int *p = &i; // p is a const pointer to the const int i
+constexpr int *p1 = &j; // p1 is a const pointer to the int j
+```
+
+### 2.5 Dealing with Types
+
+Type could get complicate, hard to spell correctly, obscure its purpose or meaning.
+
+2.5.1 Type Aliases
+
+Type aliases is a synonym for another type by using `typedef`
+```
+typedef double wages; // now wages is a type, means double
+typedef wages base, *p; // base is a synonym for double, p for double*
+``` 
+Or by alias declaration:
+```
+using SI = Sales_item; SI is a synonym for sales_item
+```
+
 
