@@ -389,5 +389,9 @@ const pstring *ps; // ps is a pointer to a constant pointer to char
 ```
 the base type in these declarations is cont pstring. Type pstring is "pointer to char", so const pstring is a constant pointer to char - not a pointer to const char. So don’t just simply replace pstring to char *.
 
-##### 2.5.2 The auto type specifier
+#### 2.5.2 The auto type specifier
+
+Let compiler figure out the type for us by using `auto` type specifier. By implication, a variable that uses auto as its type specifier must have an initializer (otherwise compiler has no clue to deduct type). If initialize multiple variables, they must have same type.
+
+##### Compound types, const, and auto
 
