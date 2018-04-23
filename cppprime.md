@@ -416,3 +416,18 @@ const auto &j = 42; // ok: we can bind a const reference to a literal
 We can also specify we want a reference to the auto-deduced type. Top-level consts in the initializer are not ignored. **Consts are not top-level when we bind a reference to an inializer**.
 
 #### 2.5.3 The `decltype` type specifier
+
+Sometimes we want to define a variable with a type that the compiler deduces from an expression **but do not want to use that expression to initialize the variable**. C++ 11 introduces `decltype`, returns the type of its operand.
+```
+decltype(f()) sum = x; // sum has whatever type f returns.
+```
+compiler does not call `f`, only uses the type that such a call would return as the type of sum. `decltype` handles top-level const and references differs subtly from the way `auto` does (include top-level const and references).
+```
+const int ci = 0, &cj = ci;
+decltype(ci) x = 0; // x has type const int
+decltype(cj) y = x; // y has type const int& and is bound to x
+decltype(cj) z; // error, z is a reference and must be initialized.
+```
+`decltype` is the only context in which variable defined as a reference is not retreated a synonym for the object to which it refer.
+
+##### decltype and Reference
