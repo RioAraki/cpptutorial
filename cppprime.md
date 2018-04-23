@@ -306,6 +306,9 @@ const double *const pip = &pi;
 
 #### 2.4.3 Top-level const
 
+Top-level const: The const that specifies that an object may not be changed.
+Low-level const: A const that is not top-level. Integral to the type and are never ignored.
+
 We use the term top-level const to indicate that the **pointer itself is a const**. When a pointer can point to a **const object**, we refer to that const as a low-level const. Top-level const indicates that an object itself is const. Low level const appears in the base type of compound types such as pointers or references. 
 ```
 int i = 0;
@@ -381,6 +384,7 @@ Or by alias declaration:
 ```
 using SI = Sales_item; SI is a synonym for sales_item
 ```
+
 ##### Pointers, const, and Type Aliases
 ```
 typedef char *pstring;
@@ -389,9 +393,26 @@ const pstring *ps; // ps is a pointer to a constant pointer to char
 ```
 the base type in these declarations is cont pstring. Type pstring is "pointer to char", so const pstring is a constant pointer to char - not a pointer to const char. So don’t just simply replace pstring to char *.
 
-#### 2.5.2 The auto type specifier
+#### 2.5.2 The `auto` type specifier
 
 Let compiler figure out the type for us by using `auto` type specifier. By implication, a variable that uses auto as its type specifier must have an initializer (otherwise compiler has no clue to deduct type). If initialize multiple variables, they must have same type.
 
 ##### Compound types, const, and auto
 
+The compiler may adjust the type to conform to normal initialization rules:
+	1. Reference: auto takes the type of object which reference refers to
+	2. auto ignores top-level consts, we have to say explicitly
+```
+const int ci  = i, &cr = ci;
+auto b = ci; // b is an int, (top level const in ci is dropped)
+auto c = cr; // c is an int (cr is an alias for ci whose const is top-level)\
+auto d = &i; // d is an int*
+auto e = &ci; // e is const int* (& of a const object is low-level const) 
+const auto f = ci; // deduced type of ci is int, f has type const int
+auto &g = ci; // g is a const int&, bound to ci
+auto&h = 42; // error: we cannot bind a plain reference to a literal
+const auto &j = 42; // ok: we can bind a const reference to a literal
+```
+We can also specify we want a reference to the auto-deduced type. Top-level consts in the initializer are not ignored. **Consts are not top-level when we bind a reference to an inializer**.
+
+#### 2.5.3 The `decltype` type specifier
