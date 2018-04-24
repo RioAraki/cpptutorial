@@ -430,4 +430,13 @@ decltype(cj) z; // error, z is a reference and must be initialized.
 ```
 `decltype` is the only context in which variable defined as a reference is not retreated a synonym for the object to which it refer.
 
-##### decltype and Reference
+##### decltype and References
+
+Some expression will cause `decltype` to yield a reference type.
+```
+int i = 42, *p = &i, &r = i;
+decltype (r + 0) b; // ok: addition yields and int; b is an uninitiliazed int
+decltype (*p) c; // error : c is int& and must be initialized
+```
+`r` here is a reference, if we want the type to which `r` refers, we should use `r` in an expression like `r+0` so it yields a value that has non reference type.
+
