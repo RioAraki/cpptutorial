@@ -513,9 +513,26 @@ using std::cin;
 …
 cin >> i;
 ```
-
 ##### Headers should not include using declarations
 
 Because header is copied into the `include` program's text, then every program includes the same `using` declaration. As a result, a program that didn’t intend to use the specified library name might **encounter unexpected name conflicts**.
 
 ### 3.2 Library string type
+
+String is a variable-length sequence of characters.
+
+#### 3.2.1 Defining and initializing strings
+
+A class defines how objects of its type can be initialized. A class may define many different ways to initialize objects of its type and each way must be distinguished from the others either by the number of initializers or by types of those initializers.
+
+##### Direct and copy forms of initialization
+
+When we initialize a variable using `=`, compiler copy initialize the object by copying the initializer. Otherwise, we omit the `=`, and use direct initialization.
+
+```
+string s1; //default initialization, s1 is an empty string
+string s2(s1); // s2 is a copy of s1, direct initialization
+string  s2 = s1; // same as above, s2 copy of s1, copy initialization
+string s3("value"); // s3 is a copy of string literal, not including the null terminator, direct initialization
+string s4 (n, 'c'); // initialize s4 with n copies of the char 'c', direct initialization
+```
