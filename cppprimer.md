@@ -501,3 +501,21 @@ Preprocessor is a program that runs before the compiler and changes the source t
 - `#define`: take the name as preprocessor variable
 Preprocessor variables must be unique throughout the program. We ensure uniqueness by basing the guard's name on the name of a class in the header and in uppercase.
 
+## Chapter 3 Strings, Vectors, and Arrays
+
+The built-in types are defined directly by C++ as they mostly are implemented directly by computer hardware. The standard library defines a number of additional types of higher-level nature that hardware does not implement directly.
+
+### 3.1 Namespace using Declarations
+
+`std::cin`, `::` is a scope operator, it says compiler should look in the scope of the left-hand operand for the name of the right hand operand. An easier way to use namespace members is `using` declaration.
+```
+using std::cin;
+…
+cin >> i;
+```
+
+##### Headers should not include using declarations
+
+Because header is copied into the `include` program's text, then every program includes the same `using` declaration. As a result, a program that didn’t intend to use the specified library name might **encounter unexpected name conflicts**.
+
+### 3.2 Library string type
