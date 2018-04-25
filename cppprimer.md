@@ -438,5 +438,21 @@ int i = 42, *p = &i, &r = i;
 decltype (r + 0) b; // ok: addition yields and int; b is an uninitiliazed int
 decltype (*p) c; // error : c is int& and must be initialized
 ```
-`r` here is a reference, if we want the type to which `r` refers, we should use `r` in an expression like `r+0` so it yields a value that has non reference type.
+`r` here is a reference, if we want the type to which `r` refers, we should use `r` in an expression like `r+0` so it yields a value that has non reference type. 
+
+The **dereference operator is an example of an expression of which `decltype` returns a reference.** When we deference a pointer, we get the object to which the pointer points. Moreover, we can assign to that object. Thus, the type deduced by `decltype (*p)` is `int&`, not plain `int`. (This explanation does not makes sense to me why it’s a reference but not that object itself.)
+
+Enclosing the name of a variable in parentheses affect the type returned by `decltype`. The compiler would evalutate the operand as an expression. It is always in reference type.
+```
+int i = 42;
+decltype((i))  d; // error, d is int& and must be initialized
+decltype(i) e; // ok: e is an (initialized) int
+```
+Assignment provides reference type
+```
+int a = 1, b = 2;
+decltype(a = b) d = a;
+```
+
+### 2.6 Defining our own data structures
 
