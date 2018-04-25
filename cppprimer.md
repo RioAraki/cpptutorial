@@ -454,5 +454,45 @@ int a = 1, b = 2;
 decltype(a = b) d = a;
 ```
 
-### 2.6 Defining our own data structures
+### 2.6 Defining our own data structures (`struct`)
+
+Data structure is a way to group together related data elements and a strategy for using those data. In C++, use `class` to group data. 
+
+#### 2.6.1 Defining the Sales_data type
+
+Class: users will be able to access the data elements directly and must impment needed operations for themselves. We name our class `sales_data` to distinguish from `sales_item` as it does not support any operations.
+```
+struct Sales_data {
+	std::string bookNo;
+	unsigned units_sold = 0;
+	double_revenue = 0.0;
+};
+```
+Need `;` in the end because we can define variables after curly bracket, though its not a good style.
+
+##### Class Data Members
+
+Defined in class as we define normal variables. C++ 11 supply in-class initializer. When creating objects, in class initializer will initialize the data member (or default initialize) 
+
+#### 2.6.2 Using the Sales_data Class
+
+Pretty basic practical code, i would skip
+
+##### Adding two `sales_data` objects
+
+Some practices
+
+##### Reading data into a `sales_data` object
+
+#### 2.6.4 Writing our own header files
+
+In order to ensure that the class definition is the same in each file, classes are usually defined in header files.
+
+Headers (usually) contain entities (such as class definitions and const and constexpr variables) that can be defined only once in any given file. We need to write our headers in a way that is safe even if the header is included multiple times.
+
+##### A brief introduction to the preprocessor
+
+Preprocessor is a program that runs before the compiler and changes the source text of our programs. `#include` is a preprocessor facility, it replaces `#include` with the content of the specified header.
+
+**Header guards** reply on preprocessor variables which have two states `defined` or `not defined`
 
