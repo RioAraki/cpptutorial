@@ -494,10 +494,10 @@ Headers (usually) contain entities (such as class definitions and const and cons
 
 Preprocessor is a program that runs before the compiler and changes the source text of our programs. `#include` is a preprocessor facility, it replaces `#include` with the content of the specified header.
 
-**Header guards** reply on preprocessor variables which have two states `defined` or `not defined`, using keyword: 
-	- `#ifdef`: if the preprocessor variable is defined
-	- `#ifndef`: not
-	- `#endif`: end
-	- `#define`: take the name as preprocessor variable
+**Header guards** rely on preprocessor variables which have two states `defined` or `not defined`, using keyword: 
+- `#ifdef`: if the preprocessor variable is defined
+- `#ifndef`: not
+- `#endif`: end
+- `#define`: take the name as preprocessor variable
 Preprocessor variables must be unique throughout the program. We ensure uniqueness by basing the guard's name on the name of a class in the header and in uppercase.
 
