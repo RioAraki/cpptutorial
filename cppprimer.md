@@ -535,4 +535,37 @@ string s2(s1); // s2 is a copy of s1, direct initialization
 string  s2 = s1; // same as above, s2 copy of s1, copy initialization
 string s3("value"); // s3 is a copy of string literal, not including the null terminator, direct initialization
 string s4 (n, 'c'); // initialize s4 with n copies of the char 'c', direct initialization
+string s5 = "hiya";  // copy
+string s7 = string(10, 'c') // copy initialization
+```
+
+#### 3.2.2 Operations on strings
+
+Class defines how objects are created and initialized, also defines the operations that objects of the class type could perform. A class could define operations that are called by name (function/ method), class. A class could also define various operator symbols (overload)
+```
+<<; output
+>>; input
+getline(string, source);
+string.empty();
+string.size();
+s[n]; // return the reference to the char at position n in s;
+s1+s2;
+s1 = s2;
+s1 == s2/ s1 != s2;
+<,<=,>,>=;
+``` 
+
+##### Reading and Writing strings
+
+We use iostream library and the same IO operator to read and write strings
+
+##### Reading an unknown number of strings
+
+Use a while loop `while (cin >> string)` and read all input to a string until the end of file
+
+##### Using getline to red an entire line
+
+Use getline function instead of >> when we do not want to ignore whitespace in our input.
+```
+while (getline(cin, line))
 ```
