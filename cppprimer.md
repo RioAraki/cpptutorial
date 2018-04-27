@@ -563,9 +563,42 @@ We use iostream library and the same IO operator to read and write strings
 
 Use a while loop `while (cin >> string)` and read all input to a string until the end of file
 
-##### Using getline to red an entire line
+##### Using getline to read an entire line
 
 Use getline function instead of >> when we do not want to ignore whitespace in our input.
 ```
-while (getline(cin, line))
+while (getline(cin, line))…
 ```
+##### The string empty and size operations
+
+`string.empty()`: returns a bool indicating whether the string is empty
+`string.size()`: returns the length of string 
+
+##### The `string::size_type` Type
+
+The return value of size() is actually `string::size_type`, not int or unsigned. The string class (and most other library types) defines several companion types which make it possible to **use the library types in a machine independent manner.**
+
+`string::size_type` is unsigned, and can hold the size of any string. It might be tedious to type `string::size_type`, but we have `auto` or `decltype`.
+
+##### Comparing strings
+
+`string` class defines several operators to compare strings.:
+- `==, !=` decides if two strings are equal or unequal
+- `<, <=, >, >=` compare two strings: compare each char in strings and see which char has the greater alphabetic order
+
+##### Assignment for strings
+
+```
+string st1(10, 'c'), st2;
+st1 = st2;
+```
+
+##### Adding two strings
+
++=
+
+##### Adding literals and strings
+
+At least one side of the + operand must be string, cannot add to literals together like `"hello" + "world" (TODO: watch cherno's series for string to get an idea why)
+
+#### 3.2.3 Dealing with the characters in a string
