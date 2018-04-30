@@ -628,9 +628,35 @@ There are two ways to access individual chars in a string: subscript or iterator
 ```
 s[0] = 'a'; // set the first char for string s
 ```
+
 ##### Using a Subscript for iteration
 ```
 for (decltype(s.size())) index = 0; index != s.size() && !issace(s[index]); ++ index) {
 	s[index] = toupper(s[index]);
 }
 ```
+
+### 3.3 Library `vector` type 
+
+Vector is a collection of objects, all of which have the **SAME** type with associated index. A vector is often referred as a container because it contatins other objects.
+
+Vector is a **class template**. Templates are not themselves functions or classes. Instead, they are instructions to the compiler for generating classes or functions. The process that compiler uses to create classes or functions from templates is called **instantiate**.
+```
+vector<int> ivec;
+vector<vector<string>> file;
+```
+Compiler would generate two distinct types.
+
+Note that vector is a template, **Not a type**. Types generated from vector must include the element type like `vector<int>` .
+
+We can have vectors to hold most nonreference (reference not object) built-in types and most class types, even including vectors.
+
+#### 3.3.1 Defining and initalizing vectors
+
+```
+vector<T> v1; // default initialization
+vector<T> v2(v1); // v2 has a copy of each element in v1, direct 
+vector<T> v3(n, val); // v3 has n elements with value val
+vector<T> v4{a,b,c,…}; // as many elements as there are initializers. 
+```
+
