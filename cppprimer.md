@@ -695,3 +695,14 @@ vector<string> v8{10, "hi!"}; // ten elements with value "hi"
 ```
 Among v5-v8, only v5 is list initialized. In order to list initialize, the values inside braces must match the element type. **If list initialization is not possible, the compiler looks for toher ways to initialize the object from the given values**.
 
+#### 3.3.2 Adding Elements to a vector
+
+More commonly we don’t know how many elements are there in a vector when we initialize it, so we need a method to add vector member which is called `push_back(element)`
+`vector.push_back(element);`
+
+Vector grows efficiently, it is often unnecessary to define a vector of a specific size. Exception is if all the elements actually need the same value. If requiring different values, **it is usually more efficient to define an empty vector and add elements as the values at run time**.
+
+##### Programming implications of adding elements to a vector
+
+We cannot use a range for if the body of llop adds elements to the vector. The body of a range for must not change the size of the sequence over which it is iterating.
+
