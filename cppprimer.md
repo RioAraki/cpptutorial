@@ -706,3 +706,29 @@ Vector grows efficiently, it is often unnecessary to define a vector of a specif
 
 We cannot use a range for if the body of llop adds elements to the vector. The body of a range for must not change the size of the sequence over which it is iterating.
 
+#### 3.3.3 Other vector operations
+```
+v.empty();
+v.size();
+v.push_back();
+v[n]; // returns a **reference** to the element at position n in v
+v1 =v2; v1 = {a,b,c,…};
+v1 == v2; v1 != v2; // equal if two vectors have same amount of element and each pair same
+<=, <, >, >=; // normal meanings using dictionary ordering
+```
+
+##### Computing a vector index
+
+a program which uses a series of grade as input, output the grade interval with every 10 score as cluster.
+```
+vector<unsigned> scores(11, 0); // 11 clusters ,all starts with 0
+unsigned grade;
+while (cin >> grade) {
+	if (grade <= 100)
+		++scores[grade/10];
+}
+```
+
+##### Subscripting does not add elements 
+
+the subscript operator on vector (and string) fetches an existing element, does not add an element.
