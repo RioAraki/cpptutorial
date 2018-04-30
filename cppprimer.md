@@ -657,6 +657,41 @@ We can have vectors to hold most nonreference (reference not object) built-in ty
 vector<T> v1; // default initialization
 vector<T> v2(v1); // v2 has a copy of each element in v1, direct 
 vector<T> v3(n, val); // v3 has n elements with value val
-vector<T> v4{a,b,c,…}; // as many elements as there are initializers. 
+vector<T> v4{a,b,c,…}; // as many elements as there are initializers, list initialization
 ```
+##### List initializing a vector
+
+Under C++ 11 we could list initialize a vector from a list of zero or more initial element values enclosed in curly braces. When we use the copy initialization form (when we use =), w esupply only a single initializer
+
+##### Creating a specified number of elements
+```
+vector<int> ivec(10, -1); // ten int elements, each initialized to -1
+```
+
+##### Value initialization
+
+We can usually omit the value and supply only a size, in this case the library creates a value-initialized element initializer for us. If the vector holds a bulit-in type, such as `int`, we have value 0; `string` we have null as default initialized.
+
+Two restrictions: some classses require we always supply explicit initializer, so we cannot default initialize, then we must supply an initial element value; The second restriction is that when we supply an element with direct form not copy form
+```
+vector<int>vi(10); // ten elements, each initialized to 0
+vector<int> vi = 10; // error, must use direct initialization to supply a size
+```
+
+##### List initializer or element count
+```
+vector<int> v1(10); // ten elements with value 0
+vector<int> v2{10}; // 1 element with value 10
+vector<int> v3(10, 1); // ten elements with value 1
+vector<int> v4{10, 1}; // two elements 10 and 1
+```
+parentheses -> all value we supply are to be used to construct the object
+curly braces -> if possible, we want to list initialize the object
+```
+vector<string> v5{"hi!"}; // list initialization: v5 has one element
+vector<string> v6("hi!"); //error: cannot construct a vector from a string literal
+vector<string> v7{10}; // ten deault-initialized elements
+vector<string> v8{10, "hi!"}; // ten elements with value "hi"
+```
+Among v5-v8, only v5 is list initialized. In order to list initialize, the values inside braces must match the element type. **If list initialization is not possible, the compiler looks for toher ways to initialize the object from the given values**.
 
