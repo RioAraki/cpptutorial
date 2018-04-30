@@ -602,3 +602,35 @@ st1 = st2;
 At least one side of the + operand must be string, cannot add to literals together like `"hello" + "world" (TODO: watch cherno's series for string to get an idea why)
 
 #### 3.2.3 Dealing with the characters in a string
+
+Often we need to deal with the individual chars in a string, so we need to know  how er gain access to the characters themselves. We have a library dealing with this, which is defined in the cctype header:
+```
+isalnum(c);
+isalpha(c);
+…
+```
+
+##### Use **Range-Based** for to process every char (C++ 11)
+```
+for (declaration : expression)
+	statement
+```
+Expression is an object of a type that represents a sequence. Declaration defines the variable used to access the underlying elements in the sequence. Each interation variable in declaration is initialized from a value of the next element in expression.
+```
+string str("some thing");
+for (auto &c : str)
+	c = toupper(c);
+```
+
+##### Processing only some chars
+
+There are two ways to access individual chars in a string: subscript or iterator. Subscript operator([] operator) takes a `string::size_type` which represents the index. The operator returns a reference to the char at ge given position.
+```
+s[0] = 'a'; // set the first char for string s
+```
+##### Using a Subscript for iteration
+```
+for (decltype(s.size())) index = 0; index != s.size() && !issace(s[index]); ++ index) {
+	s[index] = toupper(s[index]);
+}
+```
