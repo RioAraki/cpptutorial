@@ -732,3 +732,8 @@ while (cin >> grade) {
 ##### Subscripting does not add elements 
 
 the subscript operator on vector (and string) fetches an existing element, does not add an element.
+
+### 3.4 Introducing iterators
+
+There is more general mechanism to access elements of string/ vectors -- iterators. All of the library containers have iterators, but only a few of the support the subscript operator. Like pointers, iterators give us **indirect access** to an object. We can use an iterator to fetch an element and iterators have operations to move from one element to another. Valid iterator denotes an element or denotes a position one past the last element in a container.
+
