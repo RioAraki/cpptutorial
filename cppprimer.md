@@ -781,5 +781,31 @@ If object is const, `begin` and `end` return a `const_iterator`, otherwise retur
 ##### Some vector operations invalidate iterators
 Any operations that changes the size of a vector potentially invalidates all iterators into that vector.
 
-#### 3.4.2 Iterator arithmetic
+#### 3.4.2 Iterator arithmetic#### 3.4.2 Iterator arithmetic
+Increment iterator and move the iterator one element at a time.
+```
+iter + n; // yields an iterator n elements forward/ backward
+iter1 += n; // assign iter1 to iter1+n
+iter1 - iter2; 
+>, >=, <, <=; // one iterator is less than another if it refers to an element that appears in the container before the one referred to by the other iterator.
+```
+##### Arithmetic operations on iterators
+```
+auto mid = it.begin() + it.size() / 2;
+if ( vi < mid) {…}
+```
+##### Using iterator arithmetic
+binary search uses iterator arithmetic
+```
+auto beg = text.begin(), end = text.end();
+auto mid = text.begin() + (end- beg)/2;
+while (mid != end && *mid != seek) {
+	if (seek < *mid)
+		end =mid;
+	else
+		beg = mid +1;
+	mif = beg + (end-beg) / 2;
+}
+```
+
 
