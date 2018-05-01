@@ -807,5 +807,20 @@ while (mid != end && *mid != seek) {
 	mif = beg + (end-beg) / 2;
 }
 ```
+### 3.5 Arrays
 
+Similar to the library vector type but **offers a different trade off between performance and flexibility&**. An array is also a container of unnamed objects of a single type that we access by position. Unlike vector, **arrays have fixed size**. Unable to add elements to an array. Because arrays have fixed size, they sometimes offer better run-time performance for specialized applications as the cost of lost flexibility.
+
+#### 3.5.1 Defining and initializing built-in arrays
+An array declarator has the form a[d], a is the name being defined d is the dimensin of array. **The number of elements in an array is part of the array's type**. As a result, the dimension must be known at compile time, which means the dimension must be constant expression.
+```
+unsigned cnt = 42;
+constexpr unsigned sz = 42;
+
+itn arr[10]; // array of 10 ints
+int *parr[sz];  // array of 42 pointers to int
+string bad[cnt]; // error: cnt is not a const expr
+string strs[get_size()]; // ok if get_size if constepxr, error otherwise
+```
+##### Explicitly initializing array elements
 
