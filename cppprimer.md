@@ -737,3 +737,49 @@ the subscript operator on vector (and string) fetches an existing element, does 
 
 There is more general mechanism to access elements of string/ vectors -- iterators. All of the library containers have iterators, but only a few of the support the subscript operator. Like pointers, iterators give us **indirect access** to an object. We can use an iterator to fetch an element and iterators have operations to move from one element to another. Valid iterator denotes an element or denotes a position one past the last element in a container.
 
+#### 3.4.1 Using iterators
+
+We use iterator's membet `begin` and `end` to access iterator. `begin` member returns an iterator that denotes the first element, `end` denotes an iterator positioned one past the end of the container. Used as a marker indicating we have processed all elements.
+
+##### Iterator operations
+```
+*iter;  // returns a `reference to the element denoted by the iterator iter
+iter->mem; // dereferences iter and fetches the member 
+++iter , --iter; 
+iter1 == iter2 , iter != iter2;
+```
+We can only dereference valid iterator. Dereference invalid iterator/ off-the-end iterator has undefined behavior. 
+```
+string s("some string");
+if (s.begin() != s.end()) {
+	auto it = s.begin();
+	*it = toupper(*it);
+}
+```
+##### Moving iterators from one element to another
+```
+for (auto it = s.begin(); it != s.end() && !isspace(*it); ++it)
+	*it = toupper(*it);
+```
+##### Iterator types
+We generally do not know and do not need to know the precise tpye of an iterator. The library types that have iterators define types named `iterator` and `const_iterator` that represent actual iterator types.
+```
+vector<int>::iterator it;
+string::iterator it2;
+vector<int>::const_iterator it3;
+string::const_iterator it4;
+```
+##### The begin and end operations
+
+If object is const, `begin` and `end` return a `const_iterator`, otherwise return an `iterator`.
+
+##### Combining dereference and member access
+```
+(*it).empty() // dereference the iterator and calls member empty()
+```
+
+##### Some vector operations invalidate iterators
+Any operations that changes the size of a vector potentially invalidates all iterators into that vector.
+
+#### 3.4.2 Iterator arithmetic
+
