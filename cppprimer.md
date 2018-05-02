@@ -864,5 +864,88 @@ int *(arry)[10] = ptrs; // arry is a reference to an array of ten pointers.
 Type modifiers bind right to left. We see we define an array of size10, names it ptrs, that holds pointers to int. Reading def of Parry right to left isnt as helpful, shall rather read **from inside out**. 
 
 #### 3.5.2 Accessing the elements of an array
+We use subscript operator to access elements. We define the variable we used to define variable with type `size_t`, a machine-specific unsigned type that is guaranteed to be large enough to hold the size of any object in memory. 
+```
+// remind the score cluster algorithm in vector 
+vector<unsigned> scores(11, 0); // 11 buckets, all initially 0
+// Array version of scores
+unsigned scores[11] = {};
+// rest are the same
+```
+It is still good to use range for when we want to traverse entire array as we did in vector and string
+`for (auto i: scores)`
+
+3.5.3 Pointers and arrays
+
+In C++ pointers and arrays are closely intertwined, when we use an array the compiler ordinarily converts the array to a pointer.
+
+Arrays have a special property, when we use array the compiler automatically substitutes a pointer to the first element.
+```
+string nums[] = {"one","two","three"};
+string *p = &nums[0]; // p points to the first element in nums
+string *p2 = nums; // equivalent to p2 = &nums[0]
+
+int ia[] = {0,1,2,3,4};
+auto ia2 (ia);  // ia2 is an int* that points to the first element in ia
+ia2 = 42; // error: ia2 is a pointer, not int
+decltype(ia) ia3 = {2,3,4,5,6};  // decltype returns int array of 5
+``` 
+
+##### Pointers are iterators
+
+Pointers that address elements in an array also support the same operations as iterators on vectors and strings
+```
+int arr[] = {0,1,2,3,4}
+int *p = arr; // p points to the first element of arr
+++p; // p points to arr[1] 
+
+// when reaching off-the-end iterator we cannot dereference or increment it (can only get the address)
+int *e = &arr[10]
+for (int *b = arr; b != e; ++b) {/…/};
+```
+##### the library begin and end functions
+
+Easier and safer to use pointers: use `begin` and `end` functions.
+```
+int ia[] = {0,1,2,3};
+int *beg = begin(ia);
+int *last = end(ia);
+
+while (beg != end && *beg >= 0) {…}
+```
+
+##### Pointer arithmetic
+
+When we add/ subtract integral value to pointer, the result is new pointer which points to the element of given number ahead of the original pointer.
+```
+constexpr size_t sz = 5;
+int arr[sz] = {1,2,3,4,5};
+int *ip = arr; // arr[0]
+int *ip2 = ip + 4; // arr[4]
+```
+subtracting two pointers gives us the distance between those pointers. Pointers must point to elements in the same array. Result is a library type named `ptrdiff_t`, like `size_t`, is a machine-specific type. Since subtraction might yield negative distance, it is a signed intergal type.
+ 
+##### Interaction between dereference and pointer arithmetic```
+int ia[] = {0,2,4,6,8}
+int last = *(ia + 4); // ia[4]
+last = *ia + 4;  // ia[0] +4
+```
+
+##### Subscripts and pointers
+```
+int ia[] = {0,1,2,3,4};
+int i = ia[2];
+int *p = ia;
+i = *(p+2);
+
+int *p = &ia[2];
+int j = p[1]; // equivalent to *(p+1), same as ia[3]
+int k = p[-2]; // same as ia[0]
+```
+Note that subscript operator bwteen array and library type such as vector/ string is different. The library types force index used with a subscript to be an unsigned value. The build-in subscript operator does not. Index used with the built-in subscript operator can be a negative value.
+
+####  3.5.4 C-Style character strings
+
+Warning: It is not encouraged to use C-style string as it is likely to cause bugs and many security problems, harder to use.
 
 
