@@ -925,7 +925,8 @@ int *ip2 = ip + 4; // arr[4]
 ```
 subtracting two pointers gives us the distance between those pointers. Pointers must point to elements in the same array. Result is a library type named `ptrdiff_t`, like `size_t`, is a machine-specific type. Since subtraction might yield negative distance, it is a signed intergal type.
  
-##### Interaction between dereference and pointer arithmetic```
+##### Interaction between dereference and pointer arithmetic
+```
 int ia[] = {0,2,4,6,8}
 int last = *(ia + 4); // ia[4]
 last = *ia + 4;  // ia[0] +4
