@@ -824,3 +824,45 @@ string strs[get_size()]; // ok if get_size if constepxr, error otherwise
 ```
 ##### Explicitly initializing array elements
 
+List initialize the elements in an array. We omit the dimension when we do so, the compiler infers it from the number of initializers. The number of initializers must not exceed the specified size if we specify a dimension. If too many dimensions, rest are default initialized
+```
+const unsigned sz = 3;
+int ia1[sz] = {0,1,2}; // three ints with values 0,1,2
+int a2[] = {0,1,2}; // same
+int a3[5] = {0,1,2}; // equivalent to a3[] = {0,1,2,0,0}
+string a4[3] = {"hi", "bye"}; // same as a4[] = {"hi","bye",""}
+int a5[2] = {0,2,1}; // error
+```
+
+##### char arrays are special
+Char arrays have additional form of initialization: we can initialize such array from a string literal. String literal uses double quotation mark and ends with a null terminator.
+```
+char a1[] = {'C','+','+'};  // list initialization ,no null
+char a2[] = {'C','+','+','\0'}; // list initialization, explicit null
+char a3[] = "C++"; // null terminator added automatically
+const char a4[6] = "Daniel"; // error: no space for null terminator
+```
+
+##### No copy or assignment
+We cannot initialize an array as a copy of another array, nor it is legal to assign one array to another.
+```
+int a[] = {0, 1, 2};
+int a2[] = a; // error: cannot initialize one arry with another
+a2 = a; // error, cannot assign one array to another
+```
+
+##### Understanding complicated array declarations
+Array can hold objects of most any type like pointers. Because array is an object, we can define both pointers and references to arrays. Define arrays that hold pointers is straightforward, define a pointer or reference to an array is a bit more complicated.
+```
+int *ptrs[10]; // ptrs is an array of ten pointers to int
+int &refs[10] = xx; // error: we cannot define an array of references
+int (*Parray)[10] = &arr; // Parray points to an array of ten ints
+int (&arrRef)[10] = arr; // arrRef refers to an array of ten ints 
+
+int *(arry)[10] = ptrs; // arry is a reference to an array of ten pointers.
+```
+Type modifiers bind right to left. We see we define an array of size10, names it ptrs, that holds pointers to int. Reading def of Parry right to left isnt as helpful, shall rather read **from inside out**. 
+
+#### 3.5.2 Accessing the elements of an array
+
+
