@@ -949,4 +949,30 @@ Note that subscript operator bwteen array and library type such as vector/ strin
 
 Warning: It is not encouraged to use C-style string as it is likely to cause bugs and many security problems, harder to use.
 
+Char string literals are an instance of a more general construct C++ inherits from C: C style character strings. C-style strings are not a type. Instead, they are a convention for how to represent and use character strings.
+
+##### C library string functions
+```
+strlen(p);  \\ return length of p, not counting the null
+strcmp(p1, p2);  \\ compares p1 and p2 for equality.
+strcat(p1, p2);  \\ append p2 to p1, returns p1.
+strcpy(p1, p2); \\ copies p2 into p1, returns p1.
+```
+##### Comparing Strings
+Different from how we compare library strings. We use normal relational or equality operators when compare library strings:
+```
+string s1 = "A string example";
+string s2 = "A different string";
+if (s1 < s2) // false: s2 is less than s1
+```
+Using relational operator on similarly defined C-style string **compares the pointer value**, not the string themselves.
+```
+const char ca1[] = "A string example";
+const char ca2[] = "A different string";
+if (ca1 < ca2) // undefined: compares two unrelated
+```
+To compare c-style string, we use `strcmp`
+```
+if (strcmp(ca1, ca2) < 0) // same as string comparison s1 < s2
+
 
