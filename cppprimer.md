@@ -974,5 +974,44 @@ if (ca1 < ca2) // undefined: compares two unrelated
 To compare c-style string, we use `strcmp`
 ```
 if (strcmp(ca1, ca2) < 0) // same as string comparison s1 < s2
+```
 
+##### Caller is responsible for size of a destination string
 
+concatenating or copying C-style strings is also very different from the same operations on library strings
+```
+// library strings
+string largeStr = s1 + " " + s2;
+
+// c-style string, it would be disastrous if we miscalculated the size of largeStr
+strcpy(largeStr, ca1); // copies ca1 into largestr
+strcat(largeStr, " "); // adds a space at the end of largeStr
+strcat(largeStr, ca2); // concatenates ca2 onto largeStr
+```
+
+#### 3.5.5 Interfacing to older code
+
+Programs written in modern C++ may interface uses arrays or old C-style character strings. C++ library offers facilities to make the interface easier to manage.
+
+##### Mixing library strings and C-style strings
+
+We can initialize string from string literal. More generally, we can use a null-terminated char array anywhere we can use a string literal.
+- null-terminated char array could initialize or assign a string
+- null-terminated char array as string addition operation
+
+There is no reverse way, we cannot direct use a library string when a C-style string is required, for example, there is no way to initialize a character pointer from a string, there is a string member function named c_str that we can often use to accomplish what we want
+```
+string s("Hello World");  // s holds hello world
+
+char *str = s; // error: cannot initialize a char* from a string
+const char *str = s.c_str*();
+```
+c_str() returns a C-style character string, the return type is const char because by appending or modifing this char pointer may invalidate this array.
+
+##### Using an array to initialized a vector
+
+We noted that we cannot initialized a built-in array from another array. Nor can we initialize an array **from** a vector. However, we can use an array to initialize a vector by specifying the address of the first and last element we wish to copy.
+```
+int int_arr[] = {0,1,2,3,4,5};
+vector<int> ivec(begin(int_arr), end(int_arr))
+```
