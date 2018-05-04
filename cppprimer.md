@@ -1146,5 +1146,28 @@ int v[3];
 
 #### 4.1.2 Precedence and Associativity
 
-An expression with two or more operators is a compound expression. Precedence and associativity determine how the operands are grouped.
+An expression with two or more operators is a compound expression. Precedence and associativity determine how the operands are grouped. Operands with higher precedence group more tightly than lower precedence. Accociativity  determines how to group operands with the same precedence. 
 
+##### Parentheses override precendence and associativity
+
+#### 4.1.3 Order of evaluation
+
+Precedence only specifies how the operands are grouped, not about the order in which the operands are evaluated. For operator that do not specify evaluation order, it is an error for expression to refer to and change the same object, otherwise it wold have undefined behavior.
+```
+int i = 0;
+cout << i << ++i << endl; // undefined because << does not specify i or ++i is executed first.
+```
+There are four operators guarantee the order in which operands are evaluated :
+- `&&` logical and: guarantee left-hand operand first and right hand is evaluated only if the left-hand operand is true.
+- `||` logical or
+- `?:` conditional
+- `,` comma
+
+##### Order of evaluation, precedence and associativity
+`f() + g()*h()+j()`: precedence guarantees g() and h() are multiplied, associativity guarantees f() is added to product of g() and h() and that the result of that addition is added to the value of j(). There is no guarantees of the order
+
+### 4.2 Arithmetic operators
++/- as unary operator, */%, +/-
+
+### 4.3 Logical and relational operator
+`i,<,<=,>,>=,==,!=,&&,||`
