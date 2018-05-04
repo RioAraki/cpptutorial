@@ -1105,3 +1105,46 @@ Iterators allow indirect access of objects stored in a container. Iterator are u
 
 Arrays and pointers to array provide low-level analogs to the vector and string libraries. 
 
+## Chapter 4 Expressions
+
+C++ provides a rich set of operators and defines what these operators do when applied to to operands of built-in type. It also allows us to define the meaning of most of the operatos when applied to operands of class types.
+
+An expression is composed of one or more operands and yields a result when it is evaluated. The simplest form of an expression is a single literal or variable, the result if the avlue of the literal or variable. More complicated expressions are formed from an operator and one or more operands.
+
+### 4.1 Fundamentals
+
+#### 4.1.1 Basic concepts
+
+Unary operators: address of (&) and dereference (*) act as one operand.
+Binary operators: equality (==) and multiplication (*) act as two operands.
+There is also ternary operator and even some takes unlimited number of operands.
+
+##### Grouping operators and operands  
+Understand the precedence and associativity -> order of evaluation of the operands.
+
+##### Operand conversions
+Operands are often converted from one type to another.
+
+##### Overloaded operators
+We can define most operators mean when applied to class types which is called overloaded operators. (ie: `<<`, `>>` used in io library)
+
+##### Lvalues and Rvalues
+
+Every expression in C++ is either an rvalue or an lvalue. Lvalue stands on the left-hand side of an assignment while rvalue stands on right side. The distinction of L/Rvalue in C++ is less simple compare to C. 
+
+Roughly speaking, **when we use an object as an rvalue, we use the object's value (its contents), when we use an object as lvalue, we use the object's identity (its location in memory)** .
+
+We can use an lvalue when an rvalue is required, but we cannot use rvalue when an lvalue is required. When we use an lvalue in place of an rvalue, the object's content are used.
+
+```
+int i = 1; // here we use lvalue i to create rvalue 1
+int x = i; // i is lvalue, but here it is implicitly translate to rvalue
+
+int v[3];
+*(v+2)  = 4; // here  v+2 is a rvalue, but by dereference it we get a lvalue and can assign it to another rvalue.
+```
+
+#### 4.1.2 Precedence and Associativity
+
+An expression with two or more operators is a compound expression. Precedence and associativity determine how the operands are grouped.
+
