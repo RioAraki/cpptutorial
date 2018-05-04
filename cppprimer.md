@@ -1011,7 +1011,98 @@ c_str() returns a C-style character string, the return type is const char becaus
 ##### Using an array to initialized a vector
 
 We noted that we cannot initialized a built-in array from another array. Nor can we initialize an array **from** a vector. However, we can use an array to initialize a vector by specifying the address of the first and last element we wish to copy.
+
+The specified range can be a subset of the array.
 ```
 int int_arr[] = {0,1,2,3,4,5};
-vector<int> ivec(begin(int_arr), end(int_arr))
+vector<int> ivec(begin(int_arr), end(int_arr));
+
+// copies three elements int_arr[1], 2, 3
+vector<int> subvec(int_arry + 1, int_arry + 4);
 ```
+Advice: Use library types instead of arrays since pointers and arrays are error-prone. Modern C++ programs should use vectors and iterators instead of built-in arrays and pointers, and use strings rather than c-style array-based char strings.
+
+### 3.6 Multidimensional arrays
+
+We commonly referred multidimensional arrays are actually arrays of arrays.  We define an array whose element are arrays by providing two arrrays, the dimension of the array itself and the dimension of its elements.
+```
+int arr[10][20][30] = {0}
+```
+
+##### Initializing the elements of a multidimensional array
+```
+int ia[3][4] = {
+	{1,2,3,4},
+	{5,6,7,8},
+	{9,10,11,12}
+};
+
+// which is equivalent to
+int ia[3][4] = {1,2,3,…,12};
+
+// explicitly initialize only element 0 in each row
+int ia[3][4] = {{ 0 },{ 4 },{ 8 }}
+
+// only initialize row 0, remainingh are value initialized.
+int ix[3][4] = {0,3,6,9};
+```
+
+##### Subscripting a multidimensional array
+```
+ia[2][3] = arr[0][0][0];
+int (&row) [4] = ia[1];
+```
+We define row as a reference to an array of four ints and we bind that reference to the seocnd row in ia.
+
+##### Using a range for with multidimentionsal arrays
+```
+size_t cnt = 0;
+for (auto &row : ia){
+	for (auto &col: row) {
+		col = cnt;
+		++cnt;
+	}
+}
+```
+
+We cannot neglect the `&` here and run the loop as:
+```
+for (auto row : ia) {
+	for (auto col: row) {
+		…
+	}
+}
+``
+Without the reference, row would be the type of element in array ia which is an array but be regarded as int* because compiler also regard array as the pointer of the first element of the array. And `auto col: row` cannot go on because it cannot iterate over an int*
+
+##### Pointers and multidimensional arrays
+
+As with any array, when we use the name of a multidimensional array it is auto converted to a pointer to the first element in the array. Since multidimensional array is an array of arrays the pointer type to which the array converts is **a pointer to the first inner array**.
+```
+int ia[3][4];  // array of size 3 with each element in array of ints of size 4
+int (*p)[4] = ia;  // p points to an array of four ints
+p = &ia[2];  // p now points to the last element in ia
+```
+
+Note the difference between:
+```
+int *ip[4];  // arry of pointers to int
+int (*ip)[4]; // pointers to an array of four ints
+```
+
+Actively use `begin`, `end`, `auto`, `decltype` would make the operation to multidimensional array much easier.
+
+##### Tpe aliases simplify pointers to multidimensional arrays
+```
+using int_array = int[4]; // now int[4] equals to int_array
+typedef int int_array[4]; // now int[4] equals to int_array
+```
+
+### Chapter summary
+
+Two most library types: vector, string. A string is a variable-length sequence of chars. A vector is a container of objects of a single type. 
+
+Iterators allow indirect access of objects stored in a container. Iterator are used to access and navigate between the elements in strings and vectors.
+
+Arrays and pointers to array provide low-level analogs to the vector and string libraries. 
+
