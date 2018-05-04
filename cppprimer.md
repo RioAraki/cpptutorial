@@ -532,7 +532,7 @@ When we initialize a variable using `=`, compiler copy initialize the object by 
 ```
 string s1; //default initialization, s1 is an empty string
 string s2(s1); // s2 is a copy of s1, direct initialization
-string  s2 = s1; // same as above, s2 copy of s1, copy initialization
+string s2 = s1; // same as above, s2 copy of s1, copy initialization
 string s3("value"); // s3 is a copy of string literal, not including the null terminator, direct initialization
 string s4 (n, 'c'); // initialize s4 with n copies of the char 'c', direct initialization
 string s5 = "hiya";  // copy
@@ -607,7 +607,7 @@ Often we need to deal with the individual chars in a string, so we need to know 
 ```
 isalnum(c);
 isalpha(c);
-…
+several more...
 ```
 
 ##### Use **Range-Based** for to process every char (C++ 11)
@@ -693,12 +693,11 @@ vector<string> v6("hi!"); //error: cannot construct a vector from a string liter
 vector<string> v7{10}; // ten deault-initialized elements
 vector<string> v8{10, "hi!"}; // ten elements with value "hi"
 ```
-Among v5-v8, only v5 is list initialized. In order to list initialize, the values inside braces must match the element type. **If list initialization is not possible, the compiler looks for toher ways to initialize the object from the given values**.
+Among v5-v8, only v5 is list initialized. In order to list initialize, the values inside braces must match the element type. **If list initialization is not possible, the compiler looks for other ways to initialize the object from the given values**.
 
 #### 3.3.2 Adding Elements to a vector
 
-More commonly we don’t know how many elements are there in a vector when we initialize it, so we need a method to add vector member which is called `push_back(element)`
-`vector.push_back(element);`
+More commonly we don’t know how many elements are there in a vector when we initialize it, so we need a method to add vector member which is called `vector.push_back(element);`
 
 Vector grows efficiently, it is often unnecessary to define a vector of a specific size. Exception is if all the elements actually need the same value. If requiring different values, **it is usually more efficient to define an empty vector and add elements as the values at run time**.
 
@@ -1072,7 +1071,7 @@ for (auto row : ia) {
 		…
 	}
 }
-``
+```
 Without the reference, row would be the type of element in array ia which is an array but be regarded as int* because compiler also regard array as the pointer of the first element of the array. And `auto col: row` cannot go on because it cannot iterate over an int*
 
 ##### Pointers and multidimensional arrays
