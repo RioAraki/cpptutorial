@@ -1171,3 +1171,20 @@ There are four operators guarantee the order in which operands are evaluated :
 
 ### 4.3 Logical and relational operator
 `i,<,<=,>,>=,==,!=,&&,||`
+
+##### Logical and and or operators
+learnt before
+
+##### Logical not operator
+!
+
+##### The relational operators
+`<, <=, >, >=`
+chaining the operator together has different meaning
+```
+if (i < j < k) // if k is greater than 1 or 0, equals to if ((i<j)<k)
+if (i<j && j<k) // if i is smaller than j and j is smaller than k
+```
+##### Eqaulity tests and bool literals
+
+### 4.4 Assignment operators
