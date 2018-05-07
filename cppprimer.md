@@ -1257,4 +1257,63 @@ j = i++; // j = 2, i = 1: suffix yields the unincremented value
 
 ##### Combining dereference and increment in a single expression
 
+The postfix versions of ++ and -- are used when we want to use the current value of a variable and increment it in a single compound expression.
+```
+auto pbeg = v.begin();
+while (pbeg != v.end() && *beg >= 0) {
+	cout << *pbeg++ << endl;
+}
+```
+`*pbeg++` is equivalent to `*(pbeg++)` as the **precedence of postfix increment is higher than dereference operator**. `pbeg++` increments pbeg and **yields a copy of the previous value of pbeg as its result. **
+
+The operand of * is the unincremented value of pbeg. Thus, the statement prints the element to which pbeg originally pointed and increments pbeg.
+
+##### Remember that operands can be evaluated in any order
+
+Most operators give no guarantee as to the order in which operands will be evaluated. This would cause trouble when one subrexpression changes the value of an operand that is used in another subexpression.
+```
+while (beg  != s.end() && !isspace(*beg)) {
+	*beg = toupper(*beg++);  // error: this assignment is undefined
+}
+
+// because the compiler might evaluate it as either
+// *beg = toupper(*beg); // if left-hand side is evaluated first
+// *(beg+1) = toupper(*beg); // if right-hand side is evaluated first
+
+// to fix:
+for (auto it = s.begin(); it  != s.end() && !isspace(*it); ++it) {
+	*it = toupper(*it);
+}
+```
+
+### 4.6 The member access operators
+
+dot and arrow. Dot operator fetches a member from an object of class type; arrow is defined so that ptr->mem is a synonym for (*ptr).mem
+
+### 4.7 The conditional operator
+
+`cond ? expr1 : epxr2`
+
+##### Nesting conditional operations
+
+`finalgrade = (grade > 90) ? "high pass" : (grade < 60) ? "fail" : "pass"`
+
+##### Using a conditional operator in an output expression
+Remember the parenthesis
+```
+cout << ((grade < 60) ? "fail" : "pass");
+```
+
+### 4.8 The bitwise operators
+Take operands of integral type as a collection of bits. Let us test and set individual bits. We can also use these operators on a library type named `bitset` that represnets a flexibly sized collection of bits.
+
+```
+~ bitwise not
+<< left shift
+>> right shift
+& bitwise and
+^ bitwise xor
+| bitwise or
+```
+
 
