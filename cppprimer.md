@@ -1235,5 +1235,26 @@ while ((i = get_value()) != 42) {
 	//do something
 }
 ```
-if without the parenthesis
+If without the parenthesis get_value, get_value() != 42 would be ececuted first and i would either be true or false
+
+##### Beware of confusing equality and assignment operators
+```
+if (i = j)
+if (i == j)
+```
+The first one is valid. It would be true if j is nonzero, but it is an assignment, not be used to test if i and j are equal.
+
+##### Compound assignment operators
+`+=, -=, *=, /=, %=,` for arithmetic operators
+`<<=, >>=, &=, ^=, |=` for bitwiase operators
+
+### 4.5 Increment and decrement operators
+```
+int i = 0, j; 
+j = ++i; // j = 1, i = 1: prefix yields the inremented value
+j = i++; // j = 2, i = 1: suffix yields the unincremented value
+```
+
+##### Combining dereference and increment in a single expression
+
 
