@@ -1188,3 +1188,52 @@ if (i<j && j<k) // if i is smaller than j and j is smaller than k
 ##### Eqaulity tests and bool literals
 
 ### 4.4 Assignment operators
+
+The left-hand operand of an assignment operator must be a modifiable lvalue.
+```
+int i = 0, j =0, k = 0; // initialization, not assignment
+const int ci = i; // initialization, not assignment
+
+1024=k; // error: literals are rvalues
+i+j=k; // error: arithmetic expressions are rvalues
+ci=k; // error: ci is a const (nonmodifiable) lvalue
+
+k = 3.1415; // k type int, value 3
+```
+If the result of assignment, the types of the left and right operands differ, the right-hand operand is converted to the type of the left.
+
+In C++ 11 we can use a braced initializer list on the right hand side
+```
+k = {3.14}  // error: narrowing conversion, k is int, 3.14 is double, do the conversion lost information
+```
+When used with variables of built-in type, this form of initialization has one important property. **The compiler will not let us list initialize variables of built-in types if the initiializer might lead to the loss of information.** (narrowing conversion)
+
+### Assignment is right associative
+```
+int ival, jval;
+ival = jval = 0; // ok, each assigned to 0
+```
+Right associative -> jval=0 -> ival = jval, so both = 0. Each object in a multiple assignment must have the same type as its right hand neighbor or a type to which that neighbor can be converted.
+
+```
+int ival, *pval;
+ival = pval = 0; // error: cannot assign the value of a pointer to int
+```
+
+##### Assignment has low precedence
+```
+// verbose code
+int i =get_value();
+while (i != 42) {
+	// do something then update i
+	i = get_value();
+}
+
+// better code
+int i;
+while ((i = get_value()) != 42) {
+	//do something
+}
+```
+if without the parenthesis
+
