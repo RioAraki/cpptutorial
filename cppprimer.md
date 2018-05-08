@@ -1356,5 +1356,42 @@ Just as the title shows
 
 In C++ 11, we can use the scope operator to ask for the size of a member of a class type while ordinarily we can only access the members of a class type.
 
+The result of applying sizeof depends in part on the type involved:
+- sizeof char or an expression of type char: is guaranteed to be 1.
+- sizeof a reference type: returns the size of an object of the referenced type.
+- sizeof a pointer: returns the size needed hold a pointer.
+- sizeof a dereferenced pointer: returns the size of an object of the type to which the pointer points; the pointer need not be valid.
+- sizeof an array: is the size of the entire array. It is equivalent to taking the sizeof the element type times the number of elements in the array. Note that sizeof does not convert the array to a pointer.
+- sizeof a string or a vector: returns only the size of the fixed part of these types; it does not return the size used by the object’s elements.
 
+A pretty common way to find out the size of an array is to take the sizeof of the whole array / the pointer of the array which is the first element's size.
+```
+constexpr size_t size = sizeof(ia) / sizeof(*ia)
+int arr[size];
+```
 
+### 4.10 Comma operator
+
+Evaluated from left to right, left hand expression is evaluated but the result is discarded. The result of a comma expression is the value of its right-hand expression. The result is an lvalue if the right-hand operand is an lvalue.
+
+Cool question:
+`sameValue ? ++x, ++y : --x, --y` means: `(sameValue ? (++x, ++y) : --x), --y`
+Really need to understand the precendence to solve the question.
+
+### 4.11 Type conversions
+We could convert between two types in c++ if they are related.
+```int ival = 3.541 + 3; // compiler might warn about loss of precision```
+Rather than trying to add values of two different types, C++ defines a set of conversions to transform the operands to a common type which is known as implicit conversions as it happened automatically without programmer intervention.
+ 
+The implicit conversion among the arithmetic types are defined to **preserve precision**, if possible. In this case, 3 would be converted to double and add with 3.541 to get max precision and the result is double.
+
+Initialization happens next. In initialization, the type of object we initializing dominates. Initializer is converted to the object's type and in our case double is changed back to int.
+
+##### When implicit conversions occur 
+
+Compiler automatically convert operands in the following circumstances
+- In most expressions, values of integral types smaller than int are first promoted to an appropriate larger integral type.
+- In conditions, nonbool expressions are converted to bool.
+- In initializations, the initializer is converted to the type of the variable; in assignments, the right-hand operand is converted to the type of the left-hand.
+- In arithmetic and relational expressions with operands of mixed types, the types are converted to a common type.
+- As we’ll see in Chapter 6, conversions also happen during function calls.
