@@ -1395,3 +1395,76 @@ Compiler automatically convert operands in the following circumstances
 - In initializations, the initializer is converted to the type of the variable; in assignments, the right-hand operand is converted to the type of the left-hand.
 - In arithmetic and relational expressions with operands of mixed types, the types are converted to a common type.
 - As we’ll see in Chapter 6, conversions also happen during function calls.
+
+#### 4.11.1 The arithmetic conversions
+
+Arithmetic conversions convert one arithmetic type to another. The rules define a hierarchy of type conversions in which **operands to an operator are converted to the widest type**.
+
+eg: if one operand is of type `long double` then the other operand would be `long double` since it is the widest
+
+##### Integral promotions
+
+Integral promotions convert the small integral types to a larger integral type. The types `bool, char, signed char, unsigned char, short, unsigned short` are promoted to `int` if all possible vlaues of that type fit in an `int`. Otherwise it is promoted to `unsigned int`.
+
+The larger char types are promoted to the smallest type of `int, unsigned int, long, unsigned long, long long, unsigned long long` in which all possible values of that character type fit.
+
+##### Operands of unsigned type
+
+If the type conversion involves `unsigned` type, it depends on the relative sizes of the intergal types on the machime. The process: 
+
+- Integral promotion first
+	- same signedness: smaller type converted to larger type. 
+	- Different signedness:
+		- Unsigned operand >= signed operand: signed operand is converted to unsigned. 
+		- Signed operand >= unsigned operand: depends on machine
+
+##### Type conversion with example
+```
+bool flag;
+short sval;
+int ival;
+long lval;
+float fval;
+char cval;
+unsigned short usval;
+unsigned int uival;
+unsigned long ulval;
+doubl dval;
+
+3.1415L + 'a'; // 'a' promotes to int (integral promotions),  converted to long double (same signedness)
+dval + ival; // ival convert to double
+dval + fval; // f convert to d
+ival = dval; // d converted (by truncation) to int
+flag = dval; // flag is true if dval != 0
+cval + fval; // c promote to int, then int convert to float
+sval + cval; // s and c both promote to int
+cval + lval;  //  c to long  
+ival + ulval; // i to unsigned long
+usval + ival; // depends on size of unsigned short and int
+uival + lval; // depends on size of unsigned int and long
+```
+
+#### 4.11.2 Other implicit conversions
+
+There are sevreral kind of implicit conversions other than arithmetic conversions
+- **Array to pointer conversions:** In most expressions, array is automatically converted to a pointer to the first element in that array. It is not performed when we use with `decltype`, `address of`, `sizeof` or `typeid` (any operation that does not execute the operand)
+```
+int ia[10];
+int* ip = ia;
+```
+- **Pointer conversions:** A constant integral value of 0 and the literal `nullptr` can be converted to any pointer type. A pointer to any nonconst type can be converted to `void*`, and a poionter to any type can be converted to a `const void*`
+- Conversions to bool: auto conversion from arithmetic or pointer types to bool when in condition
+```
+char *cp = get_string();
+if (cp) {/*…*/}
+```
+- **Conversion to const:** We can convert a pointer to a nonconst type to a pointer to the corresponding const type, and similarly for references.
+```
+int i;
+const int &j = i; // convert int to const int
+const int *p = &i; // convert address of a nonconst to the address of a const
+int &r = j, *q = p; // error: conversion from to nonconst not allowed
+```
+- Conversions defined by class types
+
+#### 4.11.3 Explicit Conversions
