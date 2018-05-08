@@ -1315,5 +1315,46 @@ Take operands of integral type as a collection of bits. Let us test and set indi
 ^ bitwise xor
 | bitwise or
 ```
+##### Bitwise shift operators
+
+io library redefines the meaning of `<<` and `>>` by overload these operators. The built-in meaning of these operators is that they perform a bitwise shift on their operands.
+
+skip the detail as its pretty basic
+
+##### Bitwise not operator
+
+basic
+
+##### Bitwise and, or and xor operators
+```
+&:    1 & 0 = 0, 1 & 1 = 1, 0 & 0 = 0;
+|:    0 |1 = 1, 1 | 1 = 1, 0 | 0 = 0 ;
+^:    0 ^ 1 = 1, 1 ^ 1 = 0, 0 ^ 0 = 0;
+```
+##### Using bitwise operators
+Track result of each quiz using one bit per student to represent pass/ fail quiz. 
+Let's say student 27 pass the quiz.
+Then fail the quiz
+```
+unsigned long quiz1 = 0; // use this value as a collection of bits
+
+// to indicate stu 27 passes
+quiz1 |= 1UL << 27; // generate a value with only bit number 27 set using unsigned long integer literal 1
+// |= works like +=, think it as
+quiz1 = quiz1 | 1UL << 27
+
+// to indicate he failed the quiz afterwards
+quiz1 &= ~ (1UL << 27)
+```
+##### Shift operators (aka io operators) are left associative
+
+Just as the title shows
+
+### 4.9 The sizeof operator
+
+`sizeof` Shows you the size in bytes of an expression or type name. It is right associative. Size of does not evaluate the operand, so dereferencing an invalid pointer as the operand to sizeof is safe because the pointer is not used.
+
+In C++ 11, we can use the scope operator to ask for the size of a member of a class type while ordinarily we can only access the members of a class type.
+
 
 
