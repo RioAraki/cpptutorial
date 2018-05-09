@@ -1468,3 +1468,65 @@ int &r = j, *q = p; // error: conversion from to nonconst not allowed
 - Conversions defined by class types
 
 #### 4.11.3 Explicit Conversions
+
+Explicitly force an object to be converted to a different type. We use case to request an explicit conversion
+
+##### Named casts
+
+A named case has the following form: `cast-name<type>(expression);`. Cast-name could be one of `static_cast, dynamic_cast, const_cast, reinterpret_cast`.
+
+##### static cast
+
+Any well-defined type conversion, other than those involving low-level const, can be requested using a `static_cast`. We can force our expression to use floating-point division by casting one of the operands to `double`:
+`double slope = static_cast<double>(j) / i;`
+
+Useful when larger arithmetic type is assgined to smaller type. Cast infroms both reader and compiler that we are aware of and not concerned about the potential loss of precision. 
+
+`static_cast` also hlepful to perform a conversion that the compiler will not generate automatically.
+```
+void* p = &d; // ok: address of any nonconst object can be stored in a void*
+double *dp = static_cast<double*>(p); // converts void* back to original pointer type
+```
+
+##### const_cast
+
+changes only low-level const in its operand
+```
+const char *pc;
+char *p = const_cast<char*>(pc); // ok: but writing through p is undefined
+```
+Conventionally we say that a cast that converts a const object to a nonconst type "cast away the const". Once we have cast away the const of an object the compiler will no longer prevent us from writing to that object.
+
+Only a const_cast may be used to change the constness of an expression. All other forms lead to compile-time error. Similarly we cannot use const cast to change type.
+
+##### reinterpret_cast
+
+Generally performs low-level reinterpretation of the bit pattern of its operands
+```
+int *ip;
+char *pc = reinterpret_cast<char*>(ip);
+```
+However, you can never forget that the actual object addressed by pc is int not char. Any use of pc as char pointer would lead to bizarre run-time behavior.
+
+From the example we can see reinterpret_cast is dangerous. Safely using reinterpret_cast requires completely understanding the types involved as well as the details of how the compiler implements the cast.
+
+##### Old-style casts
+```
+type (expr); // function style cast notation
+(type) expr; // c-language style cast notation
+```
+advice: avoid casts. `reinterpret_cast` is always hazardous, `const_cast` can be useful in the context of overloaded functions. `static_cast, dynamic_cast` should be needed infrequently. 
+
+Old-style casts do the same conversion as either one of the modern style cast.
+
+### 4.12 Operator precedence table
+
+## Chapter summary
+
+C++ provides rich set of operators and defines their meaning when applied to values of the built-in types. The language also supports operator overloading, which allows us to define the meaning of the operators for class types.
+
+Each operator has a precedence level and associativity. Precendence determines how operators are grouped in a compound expression. Associativity determines how operators at the same precedence level are grouped.
+
+Most operators do not specify the order in which operands are evaluated. Compiler free to evaluate either left or right hand operand first. Often order of operand evaluation has no impact on the result of expression. However, if both operands refer to the same object and one of the operands changes that object, then prorgam has serious bug.
+
+Finally, operands are often converted automatically from their initial type to another related type. Conversion can also be done explicitly through a cast.
