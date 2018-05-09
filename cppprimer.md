@@ -1,4 +1,4 @@
-# Some notes from reading c++prime
+# Some notes from reading c++primer
 --------------------------------------
 ## Chapter 1  Getting started
 
