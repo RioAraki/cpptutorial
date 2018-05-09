@@ -1530,3 +1530,86 @@ Each operator has a precedence level and associativity. Precendence determines h
 Most operators do not specify the order in which operands are evaluated. Compiler free to evaluate either left or right hand operand first. Often order of operand evaluation has no impact on the result of expression. However, if both operands refer to the same object and one of the operands changes that object, then prorgam has serious bug.
 
 Finally, operands are often converted automatically from their initial type to another related type. Conversion can also be done explicitly through a cast.
+
+
+## Chapter 5  Statements
+
+C++ provides statements for conditional execution, loops, and jump that interrupt flow of control.
+
+### 5.1 Simple statements
+
+Most statement in C++ end with a semicolon. An expression (such as ival + 5) becomes an expression statement when it is followed by a **semicolon**. Expression statements cause the expression to be evaluated and its **result discarded**.
+```
+ival + 5; // useless since result is discarded
+cout << ival; // good expression statement has a side effect, such as assigning new value to a variable, or printing result.
+```
+
+##### Null statements
+```
+; // null statement
+```
+Useful where the language requires a statement but the program logic does not, just like `pass` in python.
+```
+// read until we hit end-of-file of find an input equal to sought
+while (cin >> s && s != sought)
+	;
+```
+Best to comment the null statement or it is hard for other to read the code.
+
+##### Beware of missing or extraneous semicolons
+
+As title says, don’t miss or add extra semicolons
+
+##### Compound statements (blocks)
+
+Surrounded by a pair of curly braces. Compound statement is used when the language requires a single statement but the logic of our program needs more than one. A block is not terminated by a semicolon. We can have empty block and it works as null statement.
+
+### 5.2 Statement scope
+
+If we define variables inside the control structure of the `if`,`switch`,`while`,`for` statements, they are only visible within that statement. Define the variable outside the statement if we need access to the control variable.
+
+### 5.3 Conditional statements
+
+`if` and `switch` determine flow of control based on a condition or intergral expression and choose on of several execution paths
+
+#### 5.3.1 The if statement
+basic, skip
+
+#### 5.3.2 The switch statement
+
+After a `case` label is matched, **execution starts at that label and continues across all remaining cases or until program explicitly interrupts it**.  
+
+We can omit the `break` if we have multile cases share same set of actions. 
+
+There is another `default` label which is executed when no `case` label matches the value of the `switch` expression. It is always good to put a `default` label and if `default` label is empty there must be a null statement or an empty block.
+```
+char ch;
+while (cin >> ch) {
+	switch (ch) {
+	case 'a':
+		/*do something*/
+		break;
+	case 'e': 
+	{
+		string file_name = get_file_name();
+		break;
+		
+	}
+	default:
+		/*do something*/
+		break;
+	}
+}
+```
+
+It is illegal to jump from a place where a variable with an initializer is out of scope to a place where that variable is in scope. If we need to define and initialize a variable for a particular case, we can do it in a block.
+
+### 5.4 Iterative statements 
+
+#### 5.4.1 the while statement
+
+basic  
+
+#### 5.4.2 Traditional for statement
+
+basic
