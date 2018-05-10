@@ -1611,5 +1611,87 @@ It is illegal to jump from a place where a variable with an initializer is out o
 basic  
 
 #### 5.4.2 Traditional for statement
+```
+for (initializer; condition; expression){
+	statement 
+}
+```
+	1. init-statement is executed once at the start of the loop
+	2. next, condition is evaluated. if condition is false the loop body wont be executed
+	3. if condition true, the for body executes
+	4. finally, expression is evaluated 
 
-basic
+##### Multiple definitions in the for header
+
+init-statement can define several objects but it may only be a single declaration statement. However, init-statement may be only a single declaration statement. Therefore, all the variables must have the same base type.
+```
+for (decltype(v.size()) i = 0, sz = v.size(); i != sz; ++i) {
+	v.push_back(v[i]);
+}
+```
+We can also omit part of the for header by using null statement.
+
+#### 5.4.3 Range for statement
+```
+for (declaration :  expression) {
+	statement
+}
+```
+#### 5.4.4 The do while statement
+
+the do while statement is liake a while but the condition is tested after the statement body completes. A do while ends with a semicolon after the parenthesized condition.
+```
+// repeatedly ask the user for a pair of numbers to sum
+
+string rsp; // used in the condition; can't be defined inside the do
+do {
+	cin >> rsp;
+} while (!rsp.empty() && rsp[0])
+```
+The condition is not evaluated until after the statement or block is executed, the do while loop does not allow variable definition inside the condition.
+
+### 5.5 Jump statements
+
+Jump statements interrupt the flow of execution. C++ offers four jumps: `break`, `continue`, `goto`, `return`.
+
+#### 5.5.1 The` break` statement
+
+A break statement terminates the nearest enclosing while, do while, for or switch statement.
+
+#### the `continue` statement
+
+A `continue` statement terminates the current iteration of the nearest enclosing loop and immediately begins the next iteration.
+```
+string buf;
+
+while (cin)
+```
+#### 5.5.3 The `goto` statement
+
+A goto statement provides unconditional jump from goto to another statement in the same function. Programs should not use goto, it will make programs hard to understand and hard to modify.
+```
+begin:
+	int sz = get_size();
+	if (sz <= 0) {
+		goto begin;
+	}
+```
+sz is destoryed when the `goto` executes. It is defined and inialized again when control passes back through its definition after the jump back to `begin`.
+ 
+### 5.6 `try` blocks and exception handling
+
+throw expressions: the detecting part uses to indicate that it encountered something it cant handle, we say that a throw raises an exception.
+
+try blocks:  the handling part uses to deal with exception. A try block starts with the keyword `try` and ends with one or more catch clauses. Exception thrown from code executed inside a try block are usually handled by one of the catch clauses
+
+exception classes: used to pass infromation about what happened between a throw and an associated catch.
+
+#### 5.6.1 A `throw` expression
+```
+if (item1.isbn() != item2.isbn()){
+	throw runtime_error("Data must refer to same ISBN");
+}
+```
+In this code we throw an exception terminates the current function and transfers control to a handler that will know how to handle this error.
+
+The type runtime_error is one of the standard library exception types and is defined in the `stdexcept` header.
