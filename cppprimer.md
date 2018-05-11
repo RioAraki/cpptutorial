@@ -1760,5 +1760,10 @@ C++ provides a limited number of statements. Most of these affect the flow of co
 - `throw`, exit a block of code, transfer control to an associated `catch` caluse
 - `return` stop execution of a function
 
+## Chapter 6. Functions
+
+function define and declare, how arguments are passed to and values returned from functions. Function overload
+
+### Function basics
 
 
