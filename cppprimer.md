@@ -1734,4 +1734,31 @@ Since exception interrupt the normal flow of a program, some codes being bypasse
 
 C++ library provides several classes for exceptions in four headers:
 - `exception` header: most general kind of exception
+- `stdexcept` header: several general-purpose exception classes including:
+	- `exception`: the most general kind of problem
+	- `runtime_error`: problem that can be detected only at runtime
+	- `range_error`: run-time error: result generated outside the range of values that are meaningful
+	- `overflow_error`: run-time error: computation that overflowed
+	- `underflow_error`: run-time error: computation that underflowed
+	- `logic_error`: error in logic of the program
+	- `domain_error`: logic error: argument for which no result exists.
+	- `invalid_argument`: logic error: inappropriate argument.
+	- `length_error`: logic error: attempt to create an object larger than the maximum size for that type
+	- `out_of_range`: logic error: used a value outside the valid range
+- `new` header: defines the bad_alloc exception type
+- `type_info` header: defines the bad_cast  exception type
+
+## Chapter summary
+
+C++ provides a limited number of statements. Most of these affect the flow of control within a program.
+- `while`, `for`, `do while`, provide iterative execution
+- `if` and `switch`, provide conditional execution
+- `continue`, stop the current iteration of a loop
+- `break`, exits a loop or `switch` statement
+- `goto` transfers control to a labeled statement
+- `try` and `catch`, `try` enclosed a sequence of statements that might throw an exception. `catch` are intended to handle the exceptions that the enclosed code might throw
+- `throw`, exit a block of code, transfer control to an associated `catch` caluse
+- `return` stop execution of a function
+
+
 
