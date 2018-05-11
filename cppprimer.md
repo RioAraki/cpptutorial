@@ -1695,3 +1695,43 @@ if (item1.isbn() != item2.isbn()){
 In this code we throw an exception terminates the current function and transfers control to a handler that will know how to handle this error.
 
 The type runtime_error is one of the standard library exception types and is defined in the `stdexcept` header.
+
+#### 5.6.2 The `try` block
+```
+try{
+	program-statements, normal program logic
+} catch (exception-declaration) {
+	handler-statements
+} catch (exception-declaration) {
+	handler-statements
+}
+```
+
+##### Writing a handler
+```
+while (cin >> item1 >> item2) {
+	try {
+	// execute code that will add two sales_items, if addition fails, the code throws a runtime_error exception.
+	} catch (runtime_error err) {
+		cout << err.what() << "\nTry Again? Enter y or n" << endl;
+		char c;
+		cin >> c;
+		if (!cin || c == 'n') {
+			break;
+		}
+	}
+}
+```
+`try` block manages the ordinary logic of the program, it might throw an exception of type `runtime_error`. Each of library exception classes defines a member function named `what`. It returns a copy of C-style character string (`const char*`) which indicates the error type.
+
+##### Functions are exited during the search for a handler
+
+In nested try blocks, when we meet an exception the function that threw the exception is searched first. If no matching `catch`, that function terminates and search for the function that called the one threw exception. If no appropriate `catch` is found, execution is transferred to a library function named `terminate`. It would stop further execution of the program, which is the same when we do not any `try` when meeting exception.
+
+Since exception interrupt the normal flow of a program, some codes being bypassed may cause the program to be unsafe (object invalid, incomplete state, resource not freed), it is hard to write exception safe code.
+
+#### 5.6.3 Standard exceptions
+
+C++ library provides several classes for exceptions in four headers:
+- `exception` header: most general kind of exception
+
