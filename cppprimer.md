@@ -1764,6 +1764,39 @@ C++ provides a limited number of statements. Most of these affect the flow of co
 
 function define and declare, how arguments are passed to and values returned from functions. Function overload
 
-### Function basics
+### 6.1 Function basics
+
+Consists of a return type, a name, a list of zero or more parameters, and a body. We execute a function through the **call operator**, which is a pair of parentheses.
+
+##### Writing a function
+
+basic
+
+##### Call a function
+
+basic
+
+##### Parameters and arguments
+
+**Arguments are the initializer for a fucntion's parameters.** We have no guarantees about the order in which arguments are initialized.
+
+##### Function parameter list
+
+A function's parameter list can be empty but cannot be omitted. No two parameters could have the same name. Local variables at the outermost scope of the function may not use the same name as any paramter.
+
+##### Function return type
+
+The return type could be most types, but it may not be an array type or a function type. However a function may return a pointer to an array or a function.
+
+6.1.1 Local objects
+
+Names have scope, and objects have lifetime. The scope of a name is the part of the program's text in which that name is visible. The lifetime of an object is the time during the program's execution that the object exists.
+
+Parameters and variables defined inside a function body are referred to as local variables because they are local to that function and hide declarations of the same name made in an outer scope.
+
+##### Automatic objects
+
+
+
 
 
