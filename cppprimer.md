@@ -1796,6 +1796,27 @@ Parameters and variables defined inside a function body are referred to as local
 
 ##### Automatic objects
 
+Objects that exist only while a block is executing are known as automatic objects. After execution exits a block, the values of the automatic objects created in that block are undefined. Parameters are automatic objects. Auto objects corresponding to **function's parameters** are initialized by the arguments passed to the function. Auto objects corresponding to **local variables** initialized if their definition contains an initializer.
+
+##### Local static objects
+
+Local variable whose lifetime continues across calls to the function, we obtain such objects by defining a local variable as `static`. Each local static object is initilaized before the first time execution passes through the object's definition. local statics are **destroyed only when the program terminates.**
+
+[TODO]: About default-initialized and value-initialized
+
+#### 6.1.2 Function declarations
+
+Function declaration works just like a function definition with no function body, semicolon replaces the function body. Because it has no body, no need for parameter names though we can still have it to help users to understand what the function does.
+```
+void print (vector<int>::const_iterator beg, vector<int>::const_iterator end);
+```
+Function declarations are also known as the function prototype.
+
+##### Function declarations go in header files
+
+Functions should be declared in header files and defined in source files. The header that declares a function should be included in the source file that defines that function.
+
+#### 6.1.3 Separate compilation
 
 
 
