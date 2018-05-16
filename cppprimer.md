@@ -1818,6 +1818,20 @@ Functions should be declared in header files and defined in source files. The he
 
 #### 6.1.3 Separate compilation
 
+Separate compilation lets us split our programs into several files, each of which can be compiled independently
+
+##### Compiling and linking multiple source files
+
+Let's say we have  a `fact` function in a file named `fact.cc` and declaration is in header file named `chapter6.h`. `fact.cc` includes `chapter6.h`. In additional, we have a `main` function that calls `fact` in a second file named `factMain.cc`. To produce an executable file, we might compile these files as follows:
+```
+$ CC factMain.cc fact.cc      # generates factMain.exe or a.out
+$ CC factMain.cc fact.cc -o main    # generates main or main.exe 
+```
+`CC` is the name of our compiler, `$` is our system prompt, `#` begins a command-line comment. If we have changed only one of our sources files, we would like to recompile only the file that actually changed. Most compilers provide a way to separately compile each file, this process usually yields a file with the `.obj` (Windows) or `.o` (UNIX) file extension, indicating that the file contains object code.
+
+The compiler lets us link object files 
+
+
 
 
 
