@@ -1879,7 +1879,7 @@ Top-level `const` is the one applies to the object itself. Just as in any other 
 
 Same rule as 2.4.2/ 2.4.1
 
-#####Use reference to const when possible
+##### Use reference to const when possible
 
 If we use reference as parameter but don’t leave the `const` keyword, it would give the function's caller the misleading impression that the function might change it’s argument's value. Moreover, using a reference without `const` limit the type of arguments that can be used with the function because we canot pass a `const` object, or a literal, or an object that requires conversion to a plain reference parameter.
 
