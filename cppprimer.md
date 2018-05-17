@@ -1863,10 +1863,24 @@ In C we often use pointer paramters, in C++ we have reference parameter to repla
 
 #### 6.2.2 Passing arguments by reference
 
+##### Using refereences to avoid copies
 
+We are copying the parameters when using it without reference which is inefficient and some types cannot be copied, so must go with reference. Reference parameters that are not changed inside a function should be references to const.
 
+##### Using reference parameters to return additional information
 
+Reference parameters let us efficiently return multiple results. Basically you want to pass the variable you want to return in paramter in reference. Change that paramter during execution so the original
 
+#### 6.2.3 `const` Parameters and arguments
 
+Top-level `const` is the one applies to the object itself. Just as in any other initialization, when we copy an top-level const, the top-level consts are ignored (we can copy top-level const int to a normal int)
+
+##### Pointer or reference parameters and const
+
+Same rule as 2.4.2/ 2.4.1
+
+#####Use reference to const when possible
+
+If we use reference as parameter but don’t leave the `const` keyword, it would give the function's caller the misleading impression that the function might change it’s argument's value. Moreover, using a reference without `const` limit the type of arguments that can be used with the function because we canot pass a `const` object, or a literal, or an object that requires conversion to a plain reference parameter.
 
 
