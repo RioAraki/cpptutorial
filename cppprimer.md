@@ -1829,7 +1829,42 @@ $ CC factMain.cc fact.cc -o main    # generates main or main.exe
 ```
 `CC` is the name of our compiler, `$` is our system prompt, `#` begins a command-line comment. If we have changed only one of our sources files, we would like to recompile only the file that actually changed. Most compilers provide a way to separately compile each file, this process usually yields a file with the `.obj` (Windows) or `.o` (UNIX) file extension, indicating that the file contains object code.
 
-The compiler lets us link object files 
+The compiler lets us link object files together to form an executable.
+```
+$ CC -c factMain.cc  # generates factMain.o
+$ CC -c fact.cc  # generates fact.o
+$ CC -c factMain.o fact.o  # generates factMain.o
+$ CC -c factMain.cc  # generates factMain.o
+```
+
+### 6.2 Argument Passing
+
+when paramter is a reference, we pass it **by reference**. When the argument value is copied, the parameter and argument are independent objects. We say such arguments are "passed by value"
+
+#### 6.2.1 Passing arguments by value
+
+Nonreference type variable -> value of the initializer is copied. Changed made to the variable have no effect on initializer.
+
+##### Pointer parameters
+
+Pointers works like nonreference type, only value of pointer is copied and two pointers are distinct. But we can still change the value of object by assigning through pointer.
+```
+int n = 0, i = 42;
+int *p = &n, *q = &i;
+*p = 42; // value n is changed, p is unchanged
+p = q; // p now points to i; value in i and n are unchanged
+
+void reset (int *ip) {
+	*ip = 0; // changes the value of object to which ip points to 0
+	ip = 0; // changes only the local copy of ip; argument is unchanged
+}
+```
+In C we often use pointer paramters, in C++ we have reference parameter to replace pointer parameters.
+
+#### 6.2.2 Passing arguments by reference
+
+
+
 
 
 
