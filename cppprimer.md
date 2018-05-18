@@ -1883,4 +1883,40 @@ Same rule as 2.4.2/ 2.4.1
 
 If we use reference as parameter but don’t leave the `const` keyword, it would give the function's caller the misleading impression that the function might change it’s argument's value. Moreover, using a reference without `const` limit the type of arguments that can be used with the function because we canot pass a `const` object, or a literal, or an object that requires conversion to a plain reference parameter.
 
+#### 6.2.4 Array Parameters
 
+Two important properties for arrays: 
+1. We cannot copy an array. 
+	So we can not pass array by value
+2. Array is usually converted to a pointer.
+	So when we pass an array to a function, we are actually passing a pointer to the array's element. Even  though we cannot pass an array by value, we can write parameter that looks like an array:
+```
+void print (const int*);
+void print (const int[]); // shows the intent that the function takes an array
+void print (const int[10]); // dimension for documentation purposes
+```
+Because arrays are passed as pointers, functions ordinarily don’t know the size of the size of array. Must reply on additional information provided by caller. There are three approaches:
+
+##### Using a marker to specify the extent of an array
+
+Manage array arguments requires the array itself to contain an end marker. C-style char strings are an example of this approach. This convention works well for data where there is obvious end-marker value that does not appear in originary data.
+
+##### Using the standard library conventions
+
+Pass pointers to the first and one past the last element in the array.
+```
+void print (const int *beg, const int *end) {
+	while (beg != end) {
+		cout << *beg++ << endl;
+	}
+}
+int j[2] = {0,1};
+print (begin(j), end(j);
+```
+
+##### Explicitly passing a size parameter
+
+Common in C programs and older C++ programs, define a second parameter that indicates the size of the array.
+```
+void print(const int ia[], size_t size){…}
+```
