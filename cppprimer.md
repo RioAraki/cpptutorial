@@ -1919,4 +1919,28 @@ print (begin(j), end(j);
 Common in C programs and older C++ programs, define a second parameter that indicates the size of the array.
 ```
 void print(const int ia[], size_t size){…}
+
+int j[] = {0,1};
+print (j, end(j)-begin(j));
+```
+
+##### Array parameters and const
+
+All three versions of our print function defined their array parameters as pointers to const. When function does not need write access to the array elements, the array parameter should be a **pointer to const**. A parameter should be a plain pointer to a nonconst type only if the function needs to change element values.
+
+##### Array reference parameters
+
+We can define a parameter that is a reference to an array.
+```
+void print (int (&arr)[10]) { // () is necessary, arr is a reference to an arry of ten ints, not and array of references
+	for (auto elem : arr) {
+		cout << elem << endl;
+	}
+}
+
+int i = 0, j[2] = {0, 1};
+int k[10] = {0,1, …, 9};
+
+print  (&i); // error: argument is not an arrya of ten ints
+print (j); // 
 ```
