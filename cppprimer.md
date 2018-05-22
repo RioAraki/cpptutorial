@@ -1941,6 +1941,10 @@ void print (int (&arr)[10]) { // () is necessary, arr is a reference to an arry 
 int i = 0, j[2] = {0, 1};
 int k[10] = {0,1, …, 9};
 
-print  (&i); // error: argument is not an arrya of ten ints
-print (j); // 
+print  (&i); // error: argument is not an array of ten ints
+print (j); //  error
+print (k)
 ```
+**Range-based for loops work with arrays, but not with pointers. The issue here is that arrays is actually a pointer and not an array.**
+
+
