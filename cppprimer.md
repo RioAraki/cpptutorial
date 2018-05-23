@@ -1947,4 +1947,22 @@ print (k)
 ```
 **Range-based for loops work with arrays, but not with pointers. The issue here is that arrays is actually a pointer and not an array.**
 
+##### Passing multidimentionsal array
+
+Multidimensional array is passed as a pointer to its first element. The size of the second dimension is part of the element type and must be specified.
+```
+void print (int (*matrix)[10], int rowSize) { /*…*/}
+```
+
+#### 6.2.5 main: handling command-line options
+
+The most common use of argumnets to main is to let user specify a set of options to guide the operation of the program.
+```
+prog -d -o ofile data0
+
+// such command-line options are passed to main in two (optional) parameters
+int main(int argc, char *argv[]) {…}
+
+
+```
 
