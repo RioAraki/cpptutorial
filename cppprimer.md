@@ -1962,7 +1962,25 @@ prog -d -o ofile data0
 
 // such command-line options are passed to main in two (optional) parameters
 int main(int argc, char *argv[]) {…}
-
-
 ```
+The second parameter, `argv`, is an array of pointers to C-style character strings. `argc` passes the number of strings in`argv`. We can alternatively define `main` as:
+```
+int main(int argc, char **argv) {…}
+
+prog -d -o ofile data0
+argv[0] = "prog";
+argv[1] = "-d";
+argv[2] = "-o";
+argv[3] = "ofile";
+argv[4] = "data0";
+argv[5] = 0;
+```  
+indicates argv points to a `char*`
+
+#### 6.2.6 Functions with varying parameters 
+
+In case we don’t know how many arguments we need to pass to function, there are two primay ways, if all arguments same type, pass a library type named `initializer_list`, if argument type vary, we can write variadic template which will be covered later.
+
+##### initializer_list parameters
+
 
