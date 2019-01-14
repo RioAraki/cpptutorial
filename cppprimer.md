@@ -23,16 +23,18 @@ Types determine the meaning of the data and operations in our program.
 
 #### Arithmetic types 
 
-Arithemetic types-> char, int, bool, float/ and void type | can also be regard as:  integral types (char, bool)/ floating-point types
-Type's size may varies.
+Arithemetic types-> char, int, bool, float/ and void type | can also be regard as:  **integral types (char, bool)/ floating-point types**
+Type's size may varies. 有最小size的标准，但不保证所有机器上限一致。 
 
-Signed and unsigned types:
+size: float(32) < double(64) < long double (96/128)
+
+另一个维度 Signed and unsigned types:
 
 	- signed: negative or positive, int/ short/ long/ long long, add unsigned to the type to get an unsigned version
 	- unsigned: value >= 0, in unsigned type, all bits represent the value
 	
 use unsigned type if you know values cannot be negative
-char could be signed or unsigned depends on computer, so caculate between char may not be a good idea.use double to do floating point calculation because float is not precise enough and cost is not that much different
+char could be signed or unsigned depends on computer, so caculate between char may not be a good idea.  use double to do floating point calculation because float is not precise enough and cost is not that much different
 
 #### Type conversions
 
